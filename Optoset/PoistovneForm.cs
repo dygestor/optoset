@@ -13,7 +13,7 @@ namespace Optoset
     public partial class PoistovneForm : Form
     {
 
-        private PoistovneController _pc;
+        private PobockyController _pc;
         private DataTable _data;
 
         public PoistovneForm()
@@ -27,69 +27,74 @@ namespace Optoset
             e.Cancel = true;
         }
 
-        public void Initiate(PoistovneController pc)
+        public void Initiate(PobockyController pc)
         {
             _pc = pc;
 
-            dataGridView1.DataSource = GetTable();
+            //dataGridView1.DataSource = GetTable();
+            string[] row = { _pc.Pobocky[0].Cislo, _pc.Pobocky[0].Nazov };
+            var listViewItem = new ListViewItem(row);
+            listView1.Items.Add(listViewItem);
         }
 
-        private DataTable GetTable()
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _data = new DataTable("poistovne");
-
-            _data.Columns.Add("Číslo poisťovne");
-            _data.Columns.Add("Názov poisťovne");
-
-            for(int i = 0; i < _pc.Poistovne.Count; i++)
+            var indices = listView1.SelectedIndices;
+            if (indices.Count > 0)
             {
-                _data.Rows.Add();
-
-                _data.Rows[i][0] = _pc.Poistovne[i].Cislo;
-                _data.Rows[i][1] = _pc.Poistovne[i].Nazov;
+                cisloTextBox.Text = listView1.Items[indices[0]].SubItems[0].Text;
+                nazovTextBox.Text = listView1.Items[indices[0]].SubItems[1].Text;
             }
-
-            _data.ColumnChanging += ColumnChange;
-
-            return _data;
         }
 
-        private void ColumnChange(object sender, DataColumnChangeEventArgs e)
+        private void pridatButton_Click(object sender, EventArgs e)
         {
-            string value = e.ProposedValue.ToString();
-            int rowIndex = _data.Rows.IndexOf(e.Row);
-            int columnIndex = _data.Columns.IndexOf(e.Column);
-
-            if (rowIndex < _pc.Poistovne.Count && rowIndex != -1)
+            if (_pc.PridajPobocku(cisloTextBox.Text, nazovTextBox.Text))
             {
-                switch (columnIndex)
+                string[] row = { cisloTextBox.Text, nazovTextBox.Text };
+                var listViewItem = new ListViewItem(row);
+                listView1.Items.Add(listViewItem);
+            }
+        }
+
+        private void upravitButton_Click(object sender, EventArgs e)
+        {
+            var indices = listView1.SelectedIndices;
+            if (indices.Count > 0)
+            {
+                if (_pc.UpravitPobocku(indices[0], cisloTextBox.Text, nazovTextBox.Text))
                 {
-                    case 0:
-                        if (!_pc.UpravCislo(rowIndex, e.ProposedValue.ToString()))
-                        {
-                            e.ProposedValue = _pc.Poistovne[rowIndex].Cislo;
-                        }
-                        break;
-                    case 1:
-                        if (!_pc.UpravNazov(rowIndex, e.ProposedValue.ToString()))
-                        {
-                            e.ProposedValue = _pc.Poistovne[rowIndex].Nazov;
-                        }
-                        break;
+                    //string[] row = {cisloTextBox.Text, nazovTextBox.Text};
+                    //var listViewItem = new ListViewItem(row);
+                    listView1.Items[indices[0]].SubItems[0].Text = cisloTextBox.Text;
+                    listView1.Items[indices[0]].SubItems[1].Text = nazovTextBox.Text;
                 }
             }
             else
             {
-                if (!e.Row[0].ToString().Equals("") && !e.Row[1].ToString().Equals(""))
+                MessageBox.Show("Musíte zvoliť pobočku na upravenie");
+            }
+        }
+
+        private void zmazatButton_Click(object sender, EventArgs e)
+        {
+            var indices = listView1.SelectedIndices;
+            if (indices.Count > 0)
+            {
+                if (_pc.ZmazatPobocku(indices[0]))
                 {
-                    if (!_pc.PridajPoistovnu(e.Row[0].ToString(), e.Row[1].ToString()))
-                    {
-                        e.ProposedValue = "";
-                    }
+                    listView1.Items.RemoveAt(indices[0]);
                 }
             }
+            else
+            {
+                MessageBox.Show("Musíte zvoliť pobočku na zmazanie");
+            }
+        }
 
-            //Console.Out.Write(_pc.Poistovne);
+        private void zavrietButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

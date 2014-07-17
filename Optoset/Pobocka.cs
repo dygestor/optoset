@@ -20,7 +20,7 @@ namespace Optoset
 
         public string Nazov { get; set; }
 
-        public virtual bool Validate()
+        public bool Validate()
         {
             if (!ValidateCislo())
             {
@@ -37,7 +37,7 @@ namespace Optoset
             return true;
         }
 
-        public virtual bool ValidateCislo()
+        public bool ValidateCislo()
         {
             if (Cislo.Length != 4) return false;
 
@@ -45,7 +45,7 @@ namespace Optoset
             return int.TryParse(Cislo, out i);
         }
 
-        public virtual bool ValidateNazov()
+        public bool ValidateNazov()
         {
             return !Nazov.Equals("");
         }

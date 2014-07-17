@@ -68,7 +68,7 @@
     </Compile>
     <Compile Include="Pobocka.cs" />
     <Compile Include="Zmluva.cs" />
-    <Compile Include="PoistovneController.cs" />
+    <Compile Include="PobockyController.cs" />
     <Compile Include="PoistovneForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -17,13 +17,13 @@ namespace Optoset
         private PoistovneForm poistovneForm;
 
         //controllers
-        private PoistovneController _pc;
+        private PobockyController _pc;
 
         public Optoset()
         {
             InitializeComponent();
 
-            _pc = new PoistovneController();
+            _pc = new PobockyController();
         }
 
         private void zobrazToolStripMenuItem_Click(object sender, EventArgs e)

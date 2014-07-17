@@ -7,10 +7,10 @@ using System.Windows.Forms;
 
 namespace Optoset
 {
-    public class Zmluva : Pobocka
+    public class Zmluva
     {
 
-        public Zmluva(string cislo, string nazov, string ico, string dic, string icdph, string adresa, string iban, string bic) : base(cislo, nazov)
+        public Zmluva(string cislo, string nazov, string ico, string dic, string icdph, string adresa, string iban, string bic)
         {
             Cislo = cislo;
             Nazov = nazov;
@@ -22,6 +22,8 @@ namespace Optoset
             Bic = bic;
         }
 
+        public string Cislo { get; set; }
+        public string Nazov { get; set; }
         public string Ico { get; set; }
         public string Dic { get; set; }
         public string Icdph { get; set; }
@@ -29,7 +31,7 @@ namespace Optoset
         public string Iban { get; set; }
         public string Bic { get; set; }
 
-        public override bool Validate()
+        public bool Validate()
         {
             if (!ValidateCislo())
             {
@@ -61,10 +63,28 @@ namespace Optoset
                 return false;
             }
 
+            if (!ValidateAdresa())
+            {
+                MessageBox.Show("Nesprávna adresa");
+                return false;
+            }
+
+            if (!ValidateIban())
+            {
+                MessageBox.Show("Nesprávny formát IBAN (má byť 2 znaky a maximálne 32 čísel)");
+                return false;
+            }
+
+            if (!ValidateBic())
+            {
+                MessageBox.Show("Nesprávny formát BIČ");
+                return false;
+            }
+
             return true;
         }
 
-        public override bool ValidateCislo()
+        public bool ValidateCislo()
         {
             if (Cislo.Length != 2) return false;
 
@@ -72,7 +92,7 @@ namespace Optoset
             return int.TryParse(Cislo, out i);
         }
 
-        public override bool ValidateNazov()
+        public bool ValidateNazov()
         {
             return !Nazov.Equals("");
         }
@@ -94,6 +114,22 @@ namespace Optoset
             int i;
             return (!Icdph.Equals("") && Icdph.Length == 10 && Icdph.Substring(0, 2).Equals("SK") &&
                     int.TryParse(Icdph.Substring(2), out i) && Icdph.Substring(2).Equals(Ico));
+        }
+
+        public bool ValidateAdresa()
+        {
+            return true;
+        }
+
+        public bool ValidateIban()
+        {
+            int i;
+            return (!Iban.Equals("") && Iban.Length <= 34 && Iban.Substring(0, 2).Any(x => !char.IsLetter(x)) && int.TryParse(Icdph.Substring(2), out i));
+        }
+
+        public bool ValidateBic()
+        {
+            return true;
         }
     }
 }
