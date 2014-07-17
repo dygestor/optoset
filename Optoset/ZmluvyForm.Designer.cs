@@ -76,12 +76,12 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Číslo zmluvy";
+            this.columnHeader1.Text = "Číslo poisťovne";
             this.columnHeader1.Width = 75;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Názov";
+            this.columnHeader2.Text = "Číslo zmluvy";
             this.columnHeader2.Width = 110;
             // 
             // columnHeader3
@@ -215,7 +215,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 544);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1134, 320);
             this.Controls.Add(this.zavrietButton);
             this.Controls.Add(this.zmazatButton);
             this.Controls.Add(this.upravitButton);
