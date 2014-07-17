@@ -128,6 +128,7 @@
             this.zmluvyToolStripMenuItem.Name = "zmluvyToolStripMenuItem";
             this.zmluvyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.zmluvyToolStripMenuItem.Text = "Zmluvy";
+            this.zmluvyToolStripMenuItem.Click += new System.EventHandler(this.zmluvyToolStripMenuItem_Click);
             // 
             // lekariToolStripMenuItem
             // 
@@ -179,14 +180,14 @@
             this.oAplikaciiOptosetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.oAplikaciiOptosetToolStripMenuItem.Text = "O aplikácii Optoset";
             // 
-            // Form1
+            // Optoset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 628);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Optoset";
             this.Text = "Optoset";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

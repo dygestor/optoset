@@ -59,7 +59,7 @@ namespace Optoset
 
             if (!ValidateIcdph())
             {
-                MessageBox.Show("Nesprávny formát IČ-DPH (má byť SK00000000)");
+                MessageBox.Show("Nesprávny formát IČ-DPH (má byť SK0000000000, pričom posledných 10 znakov musí byť zhodných s DIČ)");
                 return false;
             }
 
@@ -112,8 +112,8 @@ namespace Optoset
         public bool ValidateIcdph()
         {
             int i;
-            return (!Icdph.Equals("") && Icdph.Length == 10 && Icdph.Substring(0, 2).Equals("SK") &&
-                    int.TryParse(Icdph.Substring(2), out i) && Icdph.Substring(2).Equals(Ico));
+            return (!Icdph.Equals("") && Icdph.Length == 12 && Icdph.Substring(0, 2).Equals("SK") &&
+                    int.TryParse(Icdph.Substring(2), out i) && Icdph.Substring(2).Equals(Dic));
         }
 
         public bool ValidateAdresa()
@@ -123,8 +123,9 @@ namespace Optoset
 
         public bool ValidateIban()
         {
-            int i;
-            return (!Iban.Equals("") && Iban.Length <= 34 && Iban.Substring(0, 2).Any(x => !char.IsLetter(x)) && int.TryParse(Icdph.Substring(2), out i));
+            //int i;
+            //return (!Iban.Equals("") && Iban.Length <= 34 && Iban.Substring(0, 2).Any(x => !char.IsLetter(x)) && int.TryParse(Icdph.Substring(2), out i));
+            return true;
         }
 
         public bool ValidateBic()

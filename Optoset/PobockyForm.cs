@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace Optoset
 {
-    public partial class PoistovneForm : Form
+    public partial class PobockyForm : Form
     {
 
         private PobockyController _pc;
-        private DataTable _data;
 
-        public PoistovneForm()
+        public PobockyForm()
         {
             InitializeComponent();
         }
 
         private void PoistovneForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _pc.Save();
             Hide();
             e.Cancel = true;
         }
@@ -31,10 +31,14 @@ namespace Optoset
         {
             _pc = pc;
 
-            //dataGridView1.DataSource = GetTable();
-            string[] row = { _pc.Pobocky[0].Cislo, _pc.Pobocky[0].Nazov };
-            var listViewItem = new ListViewItem(row);
-            listView1.Items.Add(listViewItem);
+            foreach (var pobocka in _pc.Pobocky)
+            {
+                string[] row = { pobocka.Cislo, pobocka.Nazov };
+                var listViewItem = new ListViewItem(row);
+                listView1.Items.Add(listViewItem);   
+            }
+
+            listView1.Sort();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,6 +58,7 @@ namespace Optoset
                 string[] row = { cisloTextBox.Text, nazovTextBox.Text };
                 var listViewItem = new ListViewItem(row);
                 listView1.Items.Add(listViewItem);
+                listView1.Sort();
             }
         }
 
@@ -68,6 +73,7 @@ namespace Optoset
                     //var listViewItem = new ListViewItem(row);
                     listView1.Items[indices[0]].SubItems[0].Text = cisloTextBox.Text;
                     listView1.Items[indices[0]].SubItems[1].Text = nazovTextBox.Text;
+                    listView1.Sort();
                 }
             }
             else

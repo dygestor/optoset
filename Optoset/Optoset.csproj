@@ -69,19 +69,26 @@
     <Compile Include="Pobocka.cs" />
     <Compile Include="Zmluva.cs" />
     <Compile Include="PobockyController.cs" />
-    <Compile Include="PoistovneForm.cs">
+    <Compile Include="PobockyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PoistovneForm.Designer.cs">
-      <DependentUpon>PoistovneForm.cs</DependentUpon>
+    <Compile Include="PobockyForm.Designer.cs">
+      <DependentUpon>PobockyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZmluvyController.cs" />
+    <Compile Include="ZmluvyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZmluvyForm.Designer.cs">
+      <DependentUpon>ZmluvyForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Optoset.resx">
       <DependentUpon>Optoset.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PoistovneForm.resx">
-      <DependentUpon>PoistovneForm.cs</DependentUpon>
+    <EmbeddedResource Include="PobockyForm.resx">
+      <DependentUpon>PobockyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +100,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ZmluvyForm.resx">
+      <DependentUpon>ZmluvyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,6 +1,6 @@
 ﻿namespace Optoset
 {
-    partial class PoistovneForm
+    partial class PobockyForm
     {
         /// <summary>
         /// Required designer variable.
@@ -50,7 +50,8 @@
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(603, 232);
+            this.listView1.Size = new System.Drawing.Size(538, 232);
+            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -82,9 +83,9 @@
             // 
             // pridatButton
             // 
-            this.pridatButton.Location = new System.Drawing.Point(621, 12);
+            this.pridatButton.Location = new System.Drawing.Point(567, 12);
             this.pridatButton.Name = "pridatButton";
-            this.pridatButton.Size = new System.Drawing.Size(75, 23);
+            this.pridatButton.Size = new System.Drawing.Size(129, 23);
             this.pridatButton.TabIndex = 3;
             this.pridatButton.Text = "Pridať";
             this.pridatButton.UseVisualStyleBackColor = true;
@@ -92,9 +93,9 @@
             // 
             // upravitButton
             // 
-            this.upravitButton.Location = new System.Drawing.Point(621, 41);
+            this.upravitButton.Location = new System.Drawing.Point(567, 41);
             this.upravitButton.Name = "upravitButton";
-            this.upravitButton.Size = new System.Drawing.Size(75, 23);
+            this.upravitButton.Size = new System.Drawing.Size(129, 23);
             this.upravitButton.TabIndex = 4;
             this.upravitButton.Text = "Upraviť";
             this.upravitButton.UseVisualStyleBackColor = true;
@@ -102,9 +103,9 @@
             // 
             // zmazatButton
             // 
-            this.zmazatButton.Location = new System.Drawing.Point(621, 70);
+            this.zmazatButton.Location = new System.Drawing.Point(567, 70);
             this.zmazatButton.Name = "zmazatButton";
-            this.zmazatButton.Size = new System.Drawing.Size(75, 23);
+            this.zmazatButton.Size = new System.Drawing.Size(129, 23);
             this.zmazatButton.TabIndex = 5;
             this.zmazatButton.Text = "Zmazať";
             this.zmazatButton.UseVisualStyleBackColor = true;
@@ -112,15 +113,16 @@
             // 
             // zavrietButton
             // 
-            this.zavrietButton.Location = new System.Drawing.Point(621, 221);
+            this.zavrietButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.zavrietButton.Location = new System.Drawing.Point(567, 221);
             this.zavrietButton.Name = "zavrietButton";
-            this.zavrietButton.Size = new System.Drawing.Size(75, 23);
+            this.zavrietButton.Size = new System.Drawing.Size(129, 23);
             this.zavrietButton.TabIndex = 6;
-            this.zavrietButton.Text = "Zavrieť";
+            this.zavrietButton.Text = "Uložiť a zavrieť";
             this.zavrietButton.UseVisualStyleBackColor = true;
             this.zavrietButton.Click += new System.EventHandler(this.zavrietButton_Click);
             // 
-            // PoistovneForm
+            // PobockyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -132,7 +134,7 @@
             this.Controls.Add(this.nazovTextBox);
             this.Controls.Add(this.cisloTextBox);
             this.Controls.Add(this.listView1);
-            this.Name = "PoistovneForm";
+            this.Name = "PobockyForm";
             this.Text = "Poisťovne";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PoistovneForm_FormClosing);
             this.ResumeLayout(false);

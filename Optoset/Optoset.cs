@@ -14,16 +14,19 @@ namespace Optoset
     {
 
         //forms
-        private PoistovneForm poistovneForm;
+        private PobockyForm pobockyForm;
+        private ZmluvyForm zmluvyForm;
 
         //controllers
         private PobockyController _pc;
+        private ZmluvyController _zc;
 
         public Optoset()
         {
             InitializeComponent();
 
             _pc = new PobockyController();
+            _zc = new ZmluvyController();
         }
 
         private void zobrazToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,9 +36,16 @@ namespace Optoset
 
         private void pobockyPoistovniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            poistovneForm = new PoistovneForm();
-            poistovneForm.Initiate(_pc);
-            poistovneForm.Show();
+            pobockyForm = new PobockyForm();
+            pobockyForm.Initiate(_pc);
+            pobockyForm.Show();
+        }
+
+        private void zmluvyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            zmluvyForm = new ZmluvyForm();
+            zmluvyForm.Initiate(_zc);
+            zmluvyForm.Show();
         }
     }
 }
