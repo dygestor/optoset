@@ -1,0 +1,12 @@
+D:\Dokumenty\Optoset\Optoset\bin\Debug\Optoset.exe.config
+D:\Dokumenty\Optoset\Optoset\bin\Debug\Optoset.exe
+D:\Dokumenty\Optoset\Optoset\bin\Debug\Optoset.pdb
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.csprojResolveAssemblyReference.cache
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.Properties.Resources.resources
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.csproj.GenerateResource.Cache
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.exe
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.pdb
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.Optoset.resources
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.PobockyForm.resources
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.ZmluvyForm.resources
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.DiagnozyForm.resources
