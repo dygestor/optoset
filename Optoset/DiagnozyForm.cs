@@ -15,8 +15,6 @@ namespace Optoset
     public partial class DiagnozyForm : Form
     {
 
-        private const string fileName = "diagnozy.csv";
-
         public DiagnozyForm()
         {
             InitializeComponent();
@@ -28,26 +26,13 @@ namespace Optoset
             e.Cancel = true;
         }
 
-        public void Initiate()
+        public void Initiate(List<Tuple<string, string>> diagnozy)
         {
-            if (!File.Exists(Directory.GetCurrentDirectory() + "\\data\\" + fileName))
+            foreach (var diagnoza in diagnozy)
             {
-                MessageBox.Show("Súbor s diagnózami nebol nájdený");
-                return;
-            }
-
-            using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (BufferedStream bs = new BufferedStream(fs))
-            using (StreamReader sr = new StreamReader(bs))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] row = line.Split('|');
-                    string[] item = { row[0], row[2] };
-                    var listViewItem = new ListViewItem(item);
-                    listView1.Items.Add(listViewItem);
-                }
+                string[] item = {diagnoza.Item1, diagnoza.Item2};
+                var listViewItem = new ListViewItem(item);
+                listView1.Items.Add(listViewItem);
             }
         }
     }
