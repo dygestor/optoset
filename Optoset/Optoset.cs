@@ -16,6 +16,7 @@ namespace Optoset
         //forms
         private PobockyForm pobockyForm;
         private ZmluvyForm zmluvyForm;
+        private DiagnozyForm diagnozyForm;
 
         //controllers
         private PobockyController _pc;
@@ -46,6 +47,13 @@ namespace Optoset
             zmluvyForm = new ZmluvyForm();
             zmluvyForm.Initiate(_zc);
             zmluvyForm.Show();
+        }
+
+        private void diagnozyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            diagnozyForm = new DiagnozyForm();
+            diagnozyForm.Initiate();
+            diagnozyForm.Show();
         }
     }
 }

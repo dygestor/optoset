@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagnozyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiagnozyForm.Designer.cs">
+      <DependentUpon>DiagnozyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Optoset.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +93,9 @@
     <Compile Include="ZmluvyForm.Designer.cs">
       <DependentUpon>ZmluvyForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DiagnozyForm.resx">
+      <DependentUpon>DiagnozyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Optoset.resx">
       <DependentUpon>Optoset.cs</DependentUpon>
     </EmbeddedResource>

@@ -165,6 +165,7 @@
             this.diagnozyToolStripMenuItem.Name = "diagnozyToolStripMenuItem";
             this.diagnozyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.diagnozyToolStripMenuItem.Text = "Diagnózy";
+            this.diagnozyToolStripMenuItem.Click += new System.EventHandler(this.diagnozyToolStripMenuItem_Click);
             // 
             // napovedaToolStripMenuItem
             // 
