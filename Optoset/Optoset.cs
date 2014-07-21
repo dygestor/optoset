@@ -62,8 +62,12 @@ namespace Optoset
         private void diagnozyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             diagnozyForm = new DiagnozyForm();
+            var watch = Stopwatch.StartNew();
             diagnozyForm.Initiate(_diagnozy);
+            
             diagnozyForm.Show();
+            watch.Stop();
+            Console.WriteLine(watch.ElapsedMilliseconds);
         }
 
         private async Task LoadDiagnozyAsync()

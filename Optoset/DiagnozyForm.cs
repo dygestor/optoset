@@ -15,6 +15,8 @@ namespace Optoset
     public partial class DiagnozyForm : Form
     {
 
+        private List<Tuple<string, string>> _diagnozy;
+
         public DiagnozyForm()
         {
             InitializeComponent();
@@ -28,12 +30,15 @@ namespace Optoset
 
         public void Initiate(List<Tuple<string, string>> diagnozy)
         {
-            foreach (var diagnoza in diagnozy)
-            {
-                string[] item = {diagnoza.Item1, diagnoza.Item2};
-                var listViewItem = new ListViewItem(item);
-                listView1.Items.Add(listViewItem);
-            }
+            _diagnozy = diagnozy;
+            listView1.VirtualListSize = _diagnozy.Count;
+        }
+
+        private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            string[] item = { _diagnozy[e.ItemIndex].Item1, _diagnozy[e.ItemIndex].Item2 };
+            ListViewItem lvi = new ListViewItem(item);
+            e.Item = lvi;
         }
     }
 }
