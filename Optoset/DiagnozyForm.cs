@@ -17,6 +17,8 @@ namespace Optoset
 
         private List<Tuple<string, string>> _diagnozy;
 
+        private const string diagnozyFileName = "diagnozy.csv";
+
         public DiagnozyForm()
         {
             InitializeComponent();
@@ -28,9 +30,27 @@ namespace Optoset
             e.Cancel = true;
         }
 
-        public void Initiate(List<Tuple<string, string>> diagnozy)
+        public void Initiate()
         {
-            _diagnozy = diagnozy;
+            if (!File.Exists(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName))
+            {
+                MessageBox.Show("Súbor s diagnózami nebol nájdený");
+                return;
+            }
+
+            _diagnozy = new List<Tuple<string, string>>();
+            using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (BufferedStream bs = new BufferedStream(fs))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] row = line.Split('|');
+                    _diagnozy.Add(new Tuple<string, string>(row[0], row[2]));
+                }
+            }
+
             listView1.VirtualListSize = _diagnozy.Count;
         }
 

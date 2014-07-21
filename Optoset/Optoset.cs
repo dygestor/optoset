@@ -19,6 +19,7 @@ namespace Optoset
         private PobockyForm pobockyForm;
         private ZmluvyForm zmluvyForm;
         private DiagnozyForm diagnozyForm;
+        private PomockyForm pomockyForm;
 
         //controllers
         private PobockyController _pc;
@@ -28,7 +29,7 @@ namespace Optoset
         private List<Tuple<string, string>> _diagnozy;
 
         //filenames
-        private const string diagnozyFileName = "diagnozy.csv";
+        
 
         public Optoset()
         {
@@ -36,8 +37,6 @@ namespace Optoset
 
             _pc = new PobockyController();
             _zc = new ZmluvyController();
-
-            LoadDiagnozyAsync();
         }
 
         private void zobrazToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,41 +61,15 @@ namespace Optoset
         private void diagnozyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             diagnozyForm = new DiagnozyForm();
-            var watch = Stopwatch.StartNew();
-            diagnozyForm.Initiate(_diagnozy);
-            
+            diagnozyForm.Initiate();
             diagnozyForm.Show();
-            watch.Stop();
-            Console.WriteLine(watch.ElapsedMilliseconds);
         }
 
-        private async Task LoadDiagnozyAsync()
+        private void pomockyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Task<bool> t = LoadDiagnozy();
-            bool result = await t;
+            pomockyForm = new PomockyForm();
+            pomockyForm.Initiate();
+            pomockyForm.Show();
         }
-
-        public async Task<bool> LoadDiagnozy() // assume we return an int from this long running operation 
-        {
-            if (!File.Exists(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName))
-            {
-                MessageBox.Show("Súbor s diagnózami nebol nájdený");
-                return false;
-            }
-
-            _diagnozy = new List<Tuple<string, string>>();
-            using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (BufferedStream bs = new BufferedStream(fs))
-            using (StreamReader sr = new StreamReader(bs))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] row = line.Split('|');
-                    _diagnozy.Add(new Tuple<string, string>(row[0], row[2]));
-                }
-            }
-            return true;
-        } 
     }
 }

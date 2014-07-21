@@ -159,6 +159,7 @@
             this.pomockyToolStripMenuItem.Name = "pomockyToolStripMenuItem";
             this.pomockyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.pomockyToolStripMenuItem.Text = "Pomôcky";
+            this.pomockyToolStripMenuItem.Click += new System.EventHandler(this.pomockyToolStripMenuItem_Click);
             // 
             // diagnozyToolStripMenuItem
             // 
