@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CennikyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CennikyForm.Designer.cs">
+      <DependentUpon>CennikyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DiagnozyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <Compile Include="ZmluvyForm.Designer.cs">
       <DependentUpon>ZmluvyForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CennikyForm.resx">
+      <DependentUpon>CennikyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DiagnozyForm.resx">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
     </EmbeddedResource>

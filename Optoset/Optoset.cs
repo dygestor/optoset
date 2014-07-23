@@ -20,6 +20,7 @@ namespace Optoset
         private ZmluvyForm zmluvyForm;
         private DiagnozyForm diagnozyForm;
         private PomockyForm pomockyForm;
+        private CennikyForm cennikyForm;
 
         //controllers
         private PobockyController _pc;
@@ -70,6 +71,13 @@ namespace Optoset
             pomockyForm = new PomockyForm();
             pomockyForm.Initiate();
             pomockyForm.Show();
+        }
+
+        private void cennikyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cennikyForm = new CennikyForm();
+            cennikyForm.Initiate();
+            cennikyForm.Show();
         }
     }
 }

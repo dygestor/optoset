@@ -153,6 +153,7 @@
             this.cennikyToolStripMenuItem.Name = "cennikyToolStripMenuItem";
             this.cennikyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.cennikyToolStripMenuItem.Text = "Cenníky";
+            this.cennikyToolStripMenuItem.Click += new System.EventHandler(this.cennikyToolStripMenuItem_Click);
             // 
             // pomockyToolStripMenuItem
             // 
