@@ -117,6 +117,7 @@
             this.nastaveniaToolStripMenuItem.Name = "nastaveniaToolStripMenuItem";
             this.nastaveniaToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.nastaveniaToolStripMenuItem.Text = "Nastavenia";
+            this.nastaveniaToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 

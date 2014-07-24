@@ -42,13 +42,13 @@
             this.icoTextBox = new System.Windows.Forms.TextBox();
             this.dicTextBox = new System.Windows.Forms.TextBox();
             this.icdphTextBox = new System.Windows.Forms.TextBox();
-            this.adresaTextBox = new System.Windows.Forms.TextBox();
             this.ibanTextBox = new System.Windows.Forms.TextBox();
             this.bicTextBox = new System.Windows.Forms.TextBox();
             this.pridatButton = new System.Windows.Forms.Button();
             this.upravitButton = new System.Windows.Forms.Button();
             this.zmazatButton = new System.Windows.Forms.Button();
             this.zavrietButton = new System.Windows.Forms.Button();
+            this.adresaRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -149,13 +149,6 @@
             this.icdphTextBox.Size = new System.Drawing.Size(105, 20);
             this.icdphTextBox.TabIndex = 5;
             // 
-            // adresaTextBox
-            // 
-            this.adresaTextBox.Location = new System.Drawing.Point(537, 287);
-            this.adresaTextBox.Name = "adresaTextBox";
-            this.adresaTextBox.Size = new System.Drawing.Size(150, 20);
-            this.adresaTextBox.TabIndex = 6;
-            // 
             // ibanTextBox
             // 
             this.ibanTextBox.Location = new System.Drawing.Point(693, 287);
@@ -211,19 +204,27 @@
             this.zavrietButton.UseVisualStyleBackColor = true;
             this.zavrietButton.Click += new System.EventHandler(this.zavrietButton_Click);
             // 
+            // adresaRichTextBox
+            // 
+            this.adresaRichTextBox.Location = new System.Drawing.Point(538, 288);
+            this.adresaRichTextBox.Name = "adresaRichTextBox";
+            this.adresaRichTextBox.Size = new System.Drawing.Size(149, 78);
+            this.adresaRichTextBox.TabIndex = 13;
+            this.adresaRichTextBox.Text = "";
+            // 
             // ZmluvyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1134, 320);
+            this.ClientSize = new System.Drawing.Size(1134, 405);
+            this.Controls.Add(this.adresaRichTextBox);
             this.Controls.Add(this.zavrietButton);
             this.Controls.Add(this.zmazatButton);
             this.Controls.Add(this.upravitButton);
             this.Controls.Add(this.pridatButton);
             this.Controls.Add(this.bicTextBox);
             this.Controls.Add(this.ibanTextBox);
-            this.Controls.Add(this.adresaTextBox);
             this.Controls.Add(this.icdphTextBox);
             this.Controls.Add(this.dicTextBox);
             this.Controls.Add(this.icoTextBox);
@@ -254,12 +255,12 @@
         private System.Windows.Forms.TextBox icoTextBox;
         private System.Windows.Forms.TextBox dicTextBox;
         private System.Windows.Forms.TextBox icdphTextBox;
-        private System.Windows.Forms.TextBox adresaTextBox;
         private System.Windows.Forms.TextBox ibanTextBox;
         private System.Windows.Forms.TextBox bicTextBox;
         private System.Windows.Forms.Button pridatButton;
         private System.Windows.Forms.Button upravitButton;
         private System.Windows.Forms.Button zmazatButton;
         private System.Windows.Forms.Button zavrietButton;
+        private System.Windows.Forms.RichTextBox adresaRichTextBox;
     }
 }

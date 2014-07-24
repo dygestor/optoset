@@ -21,6 +21,7 @@ namespace Optoset
         private DiagnozyForm diagnozyForm;
         private PomockyForm pomockyForm;
         private CennikyForm cennikyForm;
+        private NastaveniaForm nastaveniaForm;
 
         //controllers
         private PobockyController _pc;
@@ -78,6 +79,13 @@ namespace Optoset
             cennikyForm = new CennikyForm();
             cennikyForm.Initiate();
             cennikyForm.Show();
+        }
+
+        private void nastaveniaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nastaveniaForm = new NastaveniaForm();
+            nastaveniaForm.Initiate();
+            nastaveniaForm.Show();
         }
     }
 }

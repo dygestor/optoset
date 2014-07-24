@@ -51,7 +51,7 @@ namespace Optoset
                 icoTextBox.Text = listView1.Items[indices[0]].SubItems[2].Text;
                 dicTextBox.Text = listView1.Items[indices[0]].SubItems[3].Text;
                 icdphTextBox.Text = listView1.Items[indices[0]].SubItems[4].Text;
-                adresaTextBox.Text = listView1.Items[indices[0]].SubItems[5].Text;
+                adresaRichTextBox.Text = listView1.Items[indices[0]].SubItems[5].Text;
                 ibanTextBox.Text = listView1.Items[indices[0]].SubItems[6].Text;
                 bicTextBox.Text = listView1.Items[indices[0]].SubItems[7].Text;
             }
@@ -59,9 +59,9 @@ namespace Optoset
 
         private void pridatButton_Click(object sender, EventArgs e)
         {
-            if (_zc.PridajZmluvu(cisloTextBox.Text, nazovTextBox.Text, icoTextBox.Text, dicTextBox.Text, icdphTextBox.Text, adresaTextBox.Text, ibanTextBox.Text, bicTextBox.Text))
+            if (_zc.PridajZmluvu(cisloTextBox.Text, nazovTextBox.Text, icoTextBox.Text, dicTextBox.Text, icdphTextBox.Text, adresaRichTextBox.Text, ibanTextBox.Text, bicTextBox.Text))
             {
-                string[] row = { cisloTextBox.Text, nazovTextBox.Text, icoTextBox.Text, dicTextBox.Text, icdphTextBox.Text, adresaTextBox.Text, ibanTextBox.Text, bicTextBox.Text };
+                string[] row = { cisloTextBox.Text, nazovTextBox.Text, icoTextBox.Text, dicTextBox.Text, icdphTextBox.Text, adresaRichTextBox.Text, ibanTextBox.Text, bicTextBox.Text };
                 var listViewItem = new ListViewItem(row);
                 listView1.Items.Add(listViewItem);
                 listView1.Sort();
@@ -73,7 +73,7 @@ namespace Optoset
             var indices = listView1.SelectedIndices;
             if (indices.Count > 0)
             {
-                if (_zc.UpravitZmluvu(indices[0], cisloTextBox.Text, nazovTextBox.Text, icoTextBox.Text, dicTextBox.Text, icdphTextBox.Text, adresaTextBox.Text, ibanTextBox.Text, bicTextBox.Text))
+                if (_zc.UpravitZmluvu(indices[0], cisloTextBox.Text, nazovTextBox.Text, icoTextBox.Text, dicTextBox.Text, icdphTextBox.Text, adresaRichTextBox.Text, ibanTextBox.Text, bicTextBox.Text))
                 {
                     //string[] row = {cisloTextBox.Text, nazovTextBox.Text};
                     //var listViewItem = new ListViewItem(row);
@@ -82,7 +82,7 @@ namespace Optoset
                     listView1.Items[indices[0]].SubItems[2].Text = icoTextBox.Text;
                     listView1.Items[indices[0]].SubItems[3].Text = dicTextBox.Text;
                     listView1.Items[indices[0]].SubItems[4].Text = icdphTextBox.Text;
-                    listView1.Items[indices[0]].SubItems[5].Text = adresaTextBox.Text;
+                    listView1.Items[indices[0]].SubItems[5].Text = adresaRichTextBox.Text;
                     listView1.Items[indices[0]].SubItems[6].Text = ibanTextBox.Text;
                     listView1.Items[indices[0]].SubItems[7].Text = bicTextBox.Text;
                     listView1.Sort();

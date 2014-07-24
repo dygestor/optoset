@@ -75,6 +75,12 @@
     <Compile Include="DiagnozyForm.Designer.cs">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NastaveniaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NastaveniaForm.Designer.cs">
+      <DependentUpon>NastaveniaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Optoset.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DiagnozyForm.resx">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NastaveniaForm.resx">
+      <DependentUpon>NastaveniaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Optoset.resx">
       <DependentUpon>Optoset.cs</DependentUpon>

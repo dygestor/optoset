@@ -35,7 +35,7 @@ namespace Optoset
                 foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory() + "\\data\\" + cennikyDirectory))
                 {
                     var name = Path.GetFileNameWithoutExtension(file);
-                    comboBox1.Items.Add(name);
+                    if (name != null) comboBox1.Items.Add(name);
                 }
             }
         }
