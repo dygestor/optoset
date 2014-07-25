@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Optoset
 {
@@ -15,7 +16,8 @@ namespace Optoset
     {
 
         private const string cennikyDirectory = "cenniky";
-        private List<Tuple<string, string, string, string, string>> _pomocky;
+        private const string nastaveniaFileName = "nastavenia.xml";
+        private List<Tuple<string, string, string, string, string, string>> _pomocky;
 
         public CennikyForm()
         {
@@ -40,9 +42,40 @@ namespace Optoset
             }
         }
 
+        private bool JePlatca()
+        {
+            var file = new XmlDocument();
+            file.Load(Directory.GetCurrentDirectory() + "\\data\\" + nastaveniaFileName);
+
+            var n = file.GetElementsByTagName("nastavenia");
+            if (n.Count > 0)
+            {
+                XmlNode nastavenia = n[0];
+                return (!nastavenia.SelectNodes("icdph")[0].InnerText.Equals(""));
+            }
+
+            return false;
+        }
+
         private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
         {
-            string[] item = { _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3, _pomocky[e.ItemIndex].Item4, _pomocky[e.ItemIndex].Item5 };
+            string[] item;
+            if (JePlatca())
+            {
+                item = new string[]
+                {
+                    _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3,
+                    _pomocky[e.ItemIndex].Item4, _pomocky[e.ItemIndex].Item6
+                };
+            }
+            else
+            {
+                item = new string[]
+                {
+                    _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3,
+                    _pomocky[e.ItemIndex].Item5, _pomocky[e.ItemIndex].Item6
+                };
+            }
             ListViewItem lvi = new ListViewItem(item);
             e.Item = lvi;
         }
@@ -56,7 +89,7 @@ namespace Optoset
                 return;
             }
 
-            _pomocky = new List<Tuple<string, string, string, string, string>>();
+            _pomocky = new List<Tuple<string, string, string, string, string, string>>();
             using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + cennikyDirectory + "\\" + cisloCennika + ".csv", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
             using (StreamReader sr = new StreamReader(bs))
@@ -65,7 +98,7 @@ namespace Optoset
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] row = line.Split('|');
-                    _pomocky.Add(new Tuple<string, string, string, string, string>(row[1], row[0], row[7], row[8], row[10]));
+                    _pomocky.Add(new Tuple<string, string, string, string, string, string>(row[1], row[0], row[7], row[8], row[9], row[10]));
                 }
             }
 

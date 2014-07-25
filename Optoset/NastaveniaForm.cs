@@ -25,6 +25,11 @@ namespace Optoset
 
         private void NastaveniaForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!Validate())
+            {
+                e.Cancel = true;
+                return;
+            }
             Save();
             Hide();
             e.Cancel = true;
@@ -94,6 +99,92 @@ namespace Optoset
                 textBox10.Text = nastavenia.SelectNodes("registracnyKod")[0].InnerText;
                 textBox11.Text = nastavenia.SelectNodes("poplatokZaRecept")[0].InnerText;
             }
+        }
+
+        public bool Validate()
+        {
+            if (!ValidateNazov())
+            {
+                MessageBox.Show("Názov výdajne nesmie byť prázdny");
+                return false;
+            }
+
+            if (!ValidateIco())
+            {
+                MessageBox.Show("IČO musí pozostávať z čísel a musí byť dĺžky 8");
+                return false;
+            }
+
+            if (!ValidateDic())
+            {
+                MessageBox.Show("DIČ musí pozostávať z čísel a musí byť dĺžky 10");
+                return false;
+            }
+
+            if (!ValidateIcdph())
+            {
+                MessageBox.Show("Nesprávny formát IČ-DPH (má byť SK0000000000, pričom posledných 10 znakov musí byť zhodných s DIČ)");
+                return false;
+            }
+
+            if (!ValidateAdresa())
+            {
+                MessageBox.Show("Adresa výdajne nesmie byť prázdna");
+                return false;
+            }
+
+            if (!ValidateIban())
+            {
+                MessageBox.Show("Nesprávny formát IBAN (má byť 2 znaky a maximálne 32 čísel)");
+                return false;
+            }
+
+            if (!ValidateBic())
+            {
+                MessageBox.Show("Nesprávny formát BIČ");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateNazov()
+        {
+            return !textBox1.Text.Equals("");
+        }
+
+        private bool ValidateIco()
+        {
+            int i;
+            return (!textBox2.Text.Equals("") && textBox2.Text.Length == 8 && int.TryParse(textBox2.Text, out i));
+        }
+
+        private bool ValidateDic()
+        {
+            int i;
+            return (!textBox3.Text.Equals("") && textBox3.Text.Length == 10 && int.TryParse(textBox3.Text, out i));
+        }
+
+        public bool ValidateIcdph()
+        {
+            int i;
+            return (textBox4.Text.Equals("") || (textBox4.Text.Length == 12 && textBox4.Text.Substring(0, 2).Equals("SK") &&
+                    int.TryParse(textBox4.Text.Substring(2), out i) && textBox4.Text.Substring(2).Equals(textBox3.Text)));
+        }
+
+        public bool ValidateAdresa()
+        {
+            return true;
+        }
+
+        public bool ValidateIban()
+        {
+            return true;
+        }
+
+        public bool ValidateBic()
+        {
+            return true;
         }
     }
 }
