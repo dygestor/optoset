@@ -48,9 +48,10 @@ namespace Optoset
             file.Load(Directory.GetCurrentDirectory() + "\\data\\" + nastaveniaFileName);
 
             var n = file.GetElementsByTagName("nastavenia");
+            XmlNode nastavenia;
             if (n.Count > 0)
             {
-                XmlNode nastavenia = n[0];
+                nastavenia = n[0];
                 return (!nastavenia.SelectNodes("icdph")[0].InnerText.Equals(""));
             }
 
@@ -62,7 +63,7 @@ namespace Optoset
             string[] item;
             if (JePlatca())
             {
-                item = new string[]
+                item = new[]
                 {
                     _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3,
                     _pomocky[e.ItemIndex].Item4, _pomocky[e.ItemIndex].Item6
@@ -70,7 +71,7 @@ namespace Optoset
             }
             else
             {
-                item = new string[]
+                item = new[]
                 {
                     _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3,
                     _pomocky[e.ItemIndex].Item5, _pomocky[e.ItemIndex].Item6
@@ -102,7 +103,7 @@ namespace Optoset
                 }
             }
 
-            _pomocky.Sort();
+            _pomocky = _pomocky.OrderBy(n => n.Item2).ToList();
 
             listView1.VirtualListSize = _pomocky.Count;
         }

@@ -51,7 +51,7 @@
             this.listView1.Location = new System.Drawing.Point(10, 39);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(444, 314);
+            this.listView1.Size = new System.Drawing.Size(624, 314);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -62,7 +62,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Názov pomôcky";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 280;
             // 
             // columnHeader3
             // 
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 365);
+            this.ClientSize = new System.Drawing.Size(646, 365);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listView1);
