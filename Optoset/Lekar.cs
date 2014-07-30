@@ -29,7 +29,7 @@ namespace Optoset
         {
             if (!ValidateKod())
             {
-                MessageBox.Show("Kód lekára nesmie byť prázdny");
+                MessageBox.Show("Kód lekára musí pozostávať z veľkého písmena a 8 čísel (napr. A12345678)");
                 return false;
             }
 
@@ -53,7 +53,7 @@ namespace Optoset
 
             if (!ValidateKpzs())
             {
-                MessageBox.Show("KPZS lekára nesmie byť prázdne");
+                MessageBox.Show("KPZS lekára musí pozostávať z veľkého písmena a 11 čísel (napr. A12345678900)");
                 return false;
             }
 
@@ -62,7 +62,8 @@ namespace Optoset
 
         private bool ValidateKod()
         {
-            return !Kod.Equals("");
+            int i;
+            return Kod.Length == 9 && int.TryParse(Kod.Substring(1), out i) && Char.IsUpper(Convert.ToChar(Kod.Substring(0, 1)));
         }
 
         private bool ValidateTitul()
@@ -82,7 +83,8 @@ namespace Optoset
 
         private bool ValidateKpzs()
         {
-            return !Kpzs.Equals("");
+            double i;
+            return (Kpzs.Length == 12) && (double.TryParse(Kpzs.Substring(1), out i)) && (Char.IsUpper(Convert.ToChar(Kpzs.Substring(0, 1))));
         }
     }
 }
