@@ -75,6 +75,14 @@
     <Compile Include="DiagnozyForm.Designer.cs">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lekar.cs" />
+    <Compile Include="LekariController.cs" />
+    <Compile Include="LekariForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LekariForm.Designer.cs">
+      <DependentUpon>LekariForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NastaveniaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DiagnozyForm.resx">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LekariForm.resx">
+      <DependentUpon>LekariForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NastaveniaForm.resx">
       <DependentUpon>NastaveniaForm.cs</DependentUpon>

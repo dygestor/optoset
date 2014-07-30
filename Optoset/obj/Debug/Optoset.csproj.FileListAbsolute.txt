@@ -13,3 +13,4 @@ D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.DiagnozyForm.resources
 D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.PomockyForm.resources
 D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.CennikyForm.resources
 D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.NastaveniaForm.resources
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.LekariForm.resources

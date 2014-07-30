@@ -22,10 +22,12 @@ namespace Optoset
         private PomockyForm pomockyForm;
         private CennikyForm cennikyForm;
         private NastaveniaForm nastaveniaForm;
+        private LekariForm lekariForm;
 
         //controllers
         private PobockyController _pc;
         private ZmluvyController _zc;
+        private LekariController _lc;
 
         //diagnozy
         private List<Tuple<string, string>> _diagnozy;
@@ -39,6 +41,7 @@ namespace Optoset
 
             _pc = new PobockyController();
             _zc = new ZmluvyController();
+            _lc = new LekariController();
         }
 
         private void zobrazToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,6 +89,13 @@ namespace Optoset
             nastaveniaForm = new NastaveniaForm();
             nastaveniaForm.Initiate();
             nastaveniaForm.Show();
+        }
+
+        private void lekariToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lekariForm = new LekariForm();
+            lekariForm.Initiate(_lc);
+            lekariForm.Show();
         }
     }
 }

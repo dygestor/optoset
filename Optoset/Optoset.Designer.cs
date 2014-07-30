@@ -136,6 +136,7 @@
             this.lekariToolStripMenuItem.Name = "lekariToolStripMenuItem";
             this.lekariToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.lekariToolStripMenuItem.Text = "Lekári";
+            this.lekariToolStripMenuItem.Click += new System.EventHandler(this.lekariToolStripMenuItem_Click);
             // 
             // pobockyPoistovniToolStripMenuItem
             // 

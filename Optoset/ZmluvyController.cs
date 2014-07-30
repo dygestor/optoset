@@ -181,6 +181,7 @@ namespace Optoset
                     var iban = z.SelectNodes("iban")[0].InnerText;
                     var bic = z.SelectNodes("bic")[0].InnerText;
                     Zmluvy.Add(new Zmluva(cislo, nazov, ico, dic, icdph, adresa, iban, bic));
+                    Kluce.Add(cislo);
                 }
             }
         }
