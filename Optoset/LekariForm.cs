@@ -85,5 +85,22 @@ namespace Optoset
                 MessageBox.Show("Musíte zvoliť lekára na upravenie");
             }
         }
+
+        private void zmazatButton_Click(object sender, EventArgs e)
+        {
+            var indices = listView1.SelectedIndices;
+            if (indices.Count > 0)
+            {
+                if (_lc.ZmazatLekara(indices[0]))
+                {
+                    listView1.VirtualListSize = _lc.Lekari.Count;
+                    listView1.Invalidate();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Musíte zvoliť lekára na zmazanie");
+            }
+        }
     }
 }

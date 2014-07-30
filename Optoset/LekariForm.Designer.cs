@@ -111,6 +111,7 @@
             this.zmazatButton.TabIndex = 15;
             this.zmazatButton.Text = "Zmazať";
             this.zmazatButton.UseVisualStyleBackColor = true;
+            this.zmazatButton.Click += new System.EventHandler(this.zmazatButton_Click);
             // 
             // upravitButton
             // 

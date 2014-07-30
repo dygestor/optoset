@@ -142,5 +142,19 @@ namespace Optoset
             }
             return false;
         }
+
+        public bool ZmazatLekara(int index)
+        {
+            DialogResult dr = MessageBox.Show("Naozaj chcete zmazať daného lekára?", "Zmazanie lekára", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Lekar l = Lekari[index];
+                Kluce.Remove(l.Kod);
+                Lekari.Remove(l);
+
+                return true;
+            }
+            return false;
+        }
     }
 }
