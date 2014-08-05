@@ -96,6 +96,7 @@
       <DependentUpon>Optoset.cs</DependentUpon>
     </Compile>
     <Compile Include="Pobocka.cs" />
+    <Compile Include="Pomocka.cs" />
     <Compile Include="PomockyForm.cs">
       <SubType>Form</SubType>
     </Compile>

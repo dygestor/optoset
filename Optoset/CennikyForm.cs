@@ -17,7 +17,7 @@ namespace Optoset
 
         private const string cennikyDirectory = "cenniky";
         private const string nastaveniaFileName = "nastavenia.xml";
-        private List<Tuple<string, string, string, string, string, string>> _pomocky;
+        private List<Pomocka> _pomocky;
 
         public CennikyForm()
         {
@@ -66,7 +66,7 @@ namespace Optoset
                 item = new[]
                 {
                     _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3,
-                    _pomocky[e.ItemIndex].Item4, _pomocky[e.ItemIndex].Item6
+                    _pomocky[e.ItemIndex].Item4, _pomocky[e.ItemIndex].Item6, _pomocky[e.ItemIndex].Item7
                 };
             }
             else
@@ -74,7 +74,7 @@ namespace Optoset
                 item = new[]
                 {
                     _pomocky[e.ItemIndex].Item1, _pomocky[e.ItemIndex].Item2, _pomocky[e.ItemIndex].Item3,
-                    _pomocky[e.ItemIndex].Item5, _pomocky[e.ItemIndex].Item6
+                    _pomocky[e.ItemIndex].Item5, _pomocky[e.ItemIndex].Item6, _pomocky[e.ItemIndex].Item7
                 };
             }
             ListViewItem lvi = new ListViewItem(item);
@@ -90,7 +90,7 @@ namespace Optoset
                 return;
             }
 
-            _pomocky = new List<Tuple<string, string, string, string, string, string>>();
+            _pomocky = new List<Pomocka>();
             using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + cennikyDirectory + "\\" + cisloCennika + ".csv", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
             using (StreamReader sr = new StreamReader(bs))
@@ -99,13 +99,64 @@ namespace Optoset
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] row = line.Split('|');
-                    _pomocky.Add(new Tuple<string, string, string, string, string, string>(row[1], row[0], row[7], row[8], row[9], row[10]));
+                    _pomocky.Add(new Pomocka(row[1], row[2], row[0], row[7], row[8], row[9], row[10]));
                 }
             }
 
             _pomocky = _pomocky.OrderBy(n => n.Item2).ToList();
 
             listView1.VirtualListSize = _pomocky.Count;
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var indices = listView1.SelectedIndices;
+            if (indices.Count > 0)
+            {
+                textBox1.Text = listView1.Items[indices[0]].SubItems[0].Text;
+                textBox2.Text = listView1.Items[indices[0]].SubItems[1].Text;
+                textBox3.Text = listView1.Items[indices[0]].SubItems[2].Text;
+                textBox4.Text = listView1.Items[indices[0]].SubItems[3].Text;
+                textBox5.Text = listView1.Items[indices[0]].SubItems[4].Text;
+                textBox6.Text = listView1.Items[indices[0]].SubItems[5].Text;
+            }
+        }
+
+        private void pridatButton_Click(object sender, EventArgs e)
+        {
+            Pomocka p;
+            if (JePlatca())
+            {
+                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, "", textBox5.Text,
+                    textBox6.Text);
+            }
+            else
+            {
+                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, "", textBox4.Text, textBox5.Text, textBox6.Text);
+            }
+
+            if (PridatPomocku(p))
+            {
+                listView1.VirtualListSize = _pomocky.Count;
+                listView1.Invalidate();
+            }
+        }
+
+        private bool PridatPomocku(Pomocka pomocka)
+        {
+            if (pomocka.Validate())
+            {
+                if (Kluce.Contains(pomocka.Item3))
+                {
+                    MessageBox.Show("Pomôcka s daným kódom už existuje");
+                    return false;
+                }
+                _pomocky.Add(pomocka);
+                Kluce.Add(pomocka.Item3);
+                _pomocky = _pomocky.OrderBy(x => x.Item3).ToList();
+                return true;
+            }
+            return false;
         }
     }
 }
