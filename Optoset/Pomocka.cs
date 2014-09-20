@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Optoset
 {
@@ -30,31 +31,71 @@ namespace Optoset
                 return false;
             }
 
-            if (!ValidateTitul())
+            if (!ValidateNazov())
             {
-                MessageBox.Show("Titul lekára nesmie byť prázdny");
+                MessageBox.Show("Názov pomôcky nesmie byť prázdny");
                 return false;
             }
 
-            if (!ValidateMeno())
+            if (!ValidateCenaMF())
             {
-                MessageBox.Show("Meno lekára nesmie byť prázdne");
+                MessageBox.Show("Cena MF musí pozostávať z čísel");
                 return false;
             }
 
-            if (!ValidatePriezvisko())
+            if (!ValidateCenaPoistovne())
             {
-                MessageBox.Show("Priezvisko lekára nesmie byť prázdne");
+                MessageBox.Show("Cena poisťovne musí pozostávať z čísel");
                 return false;
             }
 
-            if (!ValidateKpzs())
+            if (!ValidateDPH())
             {
-                MessageBox.Show("KPZS lekára musí pozostávať z veľkého písmena a 11 čísel (napr. A12345678900)");
+                MessageBox.Show("DPH musí pozostávať z čísel");
                 return false;
             }
 
             return true;
+        }
+
+        private bool ValidateDPH()
+        {
+            double d;
+            return double.TryParse(Item7, out d);
+        }
+
+        private bool ValidateCenaPoistovne()
+        {
+            if (!Item5.Equals(""))
+            {
+                double d;
+                return double.TryParse(Item5, out d);
+            }
+
+            if (!Item6.Equals(""))
+            {
+                double d;
+                return double.TryParse(Item6, out d);
+            }
+
+            return false;
+        }
+
+        private bool ValidateCenaMF()
+        {
+            double d;
+            return double.TryParse(Item4, out d);
+        }
+
+        private bool ValidateNazov()
+        {
+            return !Item1.Equals("");
+        }
+
+        private bool ValidateKod()
+        {
+            int i;
+            return Item3.Length == 5 && int.TryParse(Item3, out i);
         }
     }
 }

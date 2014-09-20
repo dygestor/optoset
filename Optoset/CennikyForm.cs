@@ -18,10 +18,18 @@ namespace Optoset
         private const string cennikyDirectory = "cenniky";
         private const string nastaveniaFileName = "nastavenia.xml";
         private List<Pomocka> _pomocky;
+        private HashSet<string> _kluce;
 
         public CennikyForm()
         {
             InitializeComponent();
+            Kluce = new HashSet<string>();
+        }
+
+        public HashSet<string> Kluce
+        {
+            get { return _kluce; }
+            set { _kluce = value; }
         }
 
         private void CennikyForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -127,12 +135,12 @@ namespace Optoset
             Pomocka p;
             if (JePlatca())
             {
-                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, "", textBox5.Text,
+                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, "", 
                     textBox6.Text);
             }
             else
             {
-                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, "", textBox4.Text, textBox5.Text, textBox6.Text);
+                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, "", textBox5.Text, textBox6.Text);
             }
 
             if (PridatPomocku(p))
