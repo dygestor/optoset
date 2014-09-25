@@ -15,5 +15,6 @@ h</adresa>
   <ustav>j</ustav>
   <kodPoskytovatela>m</kodPoskytovatela>
   <registracnyKod>n</registracnyKod>
-  <poplatokZaRecept>o</poplatokZaRecept>
+  <sadzbaDPHvyssia>20</sadzbaDPHvyssia>
+  <sadzbaDPHnizsia>10</sadzbaDPHnizsia>
 </nastavenia>

@@ -25,6 +25,10 @@ namespace Optoset
         {
             InitializeComponent();
             Kluce = new HashSet<string>();
+
+            comboBox2.Items.Clear();
+            comboBox2.Items.Add(Settings.SadzbaDPHvyssia);
+            comboBox2.Items.Add(Settings.SadzbaDPHnizsia);
         }
 
         public HashSet<string> Kluce
@@ -145,7 +149,7 @@ namespace Optoset
                 textBox3.Text = listView1.Items[indices[0]].SubItems[2].Text;
                 textBox4.Text = listView1.Items[indices[0]].SubItems[3].Text;
                 textBox5.Text = listView1.Items[indices[0]].SubItems[4].Text;
-                textBox6.Text = listView1.Items[indices[0]].SubItems[5].Text;
+                comboBox2.Text = listView1.Items[indices[0]].SubItems[5].Text;
             }
         }
 
@@ -155,11 +159,11 @@ namespace Optoset
             if (Settings.JePlatca())
             {
                 p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, "", textBox5.Text, 
-                    textBox6.Text);
+                    comboBox2.Text);
             }
             else
             {
-                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, "", textBox4.Text, textBox5.Text, textBox6.Text);
+                p = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, "", textBox4.Text, textBox5.Text, comboBox2.Text);
             }
 
             if (PridatPomocku(p))
@@ -194,11 +198,11 @@ namespace Optoset
             if (Settings.JePlatca())
             {
                 u = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, "", textBox5.Text,
-                    textBox6.Text, p.NepotrebneVeci);
+                    comboBox2.Text, p.NepotrebneVeci);
             }
             else
             {
-                u = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, "", textBox4.Text, textBox5.Text, textBox6.Text, p.NepotrebneVeci);
+                u = new Pomocka(textBox1.Text, textBox2.Text, textBox3.Text, "", textBox4.Text, textBox5.Text, comboBox2.Text, p.NepotrebneVeci);
             }
 
             if (u.Validate())

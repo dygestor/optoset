@@ -46,7 +46,7 @@
             this.zmazatButton = new System.Windows.Forms.Button();
             this.upravitButton = new System.Windows.Forms.Button();
             this.pridatButton = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -196,19 +196,21 @@
             this.pridatButton.UseVisualStyleBackColor = true;
             this.pridatButton.Click += new System.EventHandler(this.pridatButton_Click);
             // 
-            // textBox6
+            // comboBox2
             // 
-            this.textBox6.Location = new System.Drawing.Point(605, 359);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(45, 20);
-            this.textBox6.TabIndex = 31;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(605, 359);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(71, 21);
+            this.comboBox2.TabIndex = 31;
             // 
             // CennikyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 399);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
@@ -249,6 +251,6 @@
         private System.Windows.Forms.Button upravitButton;
         private System.Windows.Forms.Button pridatButton;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

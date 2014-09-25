@@ -31,6 +31,7 @@ namespace Optoset
                 return;
             }
             Save();
+            Settings.Nacitaj();
             Hide();
             e.Cancel = true;
         }
@@ -63,7 +64,8 @@ namespace Optoset
             writer.WriteElementString("ustav", textBox6.Text);
             writer.WriteElementString("kodPoskytovatela", textBox9.Text);
             writer.WriteElementString("registracnyKod", textBox10.Text);
-            writer.WriteElementString("poplatokZaRecept", textBox11.Text);
+            writer.WriteElementString("sadzbaDPHvyssia", textBox11.Text);
+            writer.WriteElementString("sadzbaDPHnizsia", textBox12.Text);
 
             writer.WriteEndElement();
 
@@ -97,7 +99,8 @@ namespace Optoset
                 textBox6.Text = nastavenia.SelectNodes("ustav")[0].InnerText;
                 textBox9.Text = nastavenia.SelectNodes("kodPoskytovatela")[0].InnerText;
                 textBox10.Text = nastavenia.SelectNodes("registracnyKod")[0].InnerText;
-                textBox11.Text = nastavenia.SelectNodes("poplatokZaRecept")[0].InnerText;
+                textBox11.Text = nastavenia.SelectNodes("sadzbaDPHvyssia")[0].InnerText;
+                textBox12.Text = nastavenia.SelectNodes("sadzbaDPHnizsia")[0].InnerText;
             }
         }
 
@@ -145,6 +148,18 @@ namespace Optoset
                 return false;
             }
 
+            if (!ValidateSadzbaDPHvyssia())
+            {
+                MessageBox.Show("Zlá vyššia sadzba DPH");
+                return false;
+            }
+
+            if (!ValidateSadzbaDPHnizsia())
+            {
+                MessageBox.Show("Zlá nižšia sadzba DPH");
+                return false;
+            }
+
             return true;
         }
 
@@ -185,6 +200,18 @@ namespace Optoset
         public bool ValidateBic()
         {
             return true;
+        }
+
+        public bool ValidateSadzbaDPHvyssia()
+        {
+            int i;
+            return int.TryParse(textBox11.Text, out i);
+        }
+
+        public bool ValidateSadzbaDPHnizsia()
+        {
+            int i;
+            return int.TryParse(textBox12.Text, out i);
         }
     }
 }

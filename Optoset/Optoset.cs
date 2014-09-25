@@ -89,5 +89,16 @@ namespace Optoset
             lekariForm.Initiate(_lc);
             lekariForm.Show();
         }
+
+        private void Optoset_Shown(object sender, EventArgs e)
+        {
+            if (!Settings.Nacitaj())
+            {
+                MessageBox.Show("Prosím vyplňte nastavenia aplikácie.");
+                nastaveniaForm = new NastaveniaForm();
+                nastaveniaForm.Initiate();
+                nastaveniaForm.Show();
+            }
+        }
     }
 }
