@@ -75,6 +75,14 @@
     <Compile Include="DiagnozyForm.Designer.cs">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Faktura.cs" />
+    <Compile Include="FakturaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FakturaForm.Designer.cs">
+      <DependentUpon>FakturaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FakturyController.cs" />
     <Compile Include="Lekar.cs" />
     <Compile Include="LekariController.cs" />
     <Compile Include="LekariForm.cs">
@@ -98,6 +106,12 @@
     <Compile Include="Pobocka.cs" />
     <Compile Include="Pomocka.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="TabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControl.Designer.cs">
+      <DependentUpon>TabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zmluva.cs" />
     <Compile Include="PobockyController.cs" />
     <Compile Include="PobockyForm.cs">
@@ -121,6 +135,9 @@
     <EmbeddedResource Include="DiagnozyForm.resx">
       <DependentUpon>DiagnozyForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FakturaForm.resx">
+      <DependentUpon>FakturaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LekariForm.resx">
       <DependentUpon>LekariForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +160,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TabControl.resx">
+      <DependentUpon>TabControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ZmluvyForm.resx">
       <DependentUpon>ZmluvyForm.cs</DependentUpon>
     </EmbeddedResource>

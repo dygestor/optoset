@@ -22,11 +22,13 @@ namespace Optoset
         private CennikyForm cennikyForm;
         private NastaveniaForm nastaveniaForm;
         private LekariForm lekariForm;
+        private FakturaForm fakturaForm;
 
         //controllers
         private PobockyController _pc;
         private ZmluvyController _zc;
         private LekariController _lc;
+        private FakturyController _fc;
 
         //diagnozy
         private List<Tuple<string, string>> _diagnozy;
@@ -41,6 +43,7 @@ namespace Optoset
             _pc = new PobockyController();
             _zc = new ZmluvyController();
             _lc = new LekariController();
+            _fc = new FakturyController();
         }
 
         private void zobrazToolStripMenuItem_Click(object sender, EventArgs e)
@@ -99,6 +102,27 @@ namespace Optoset
                 nastaveniaForm.Initiate();
                 nastaveniaForm.Show();
             }
+        }
+
+        private void novyMesiacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fakturaForm = new FakturaForm();
+            fakturaForm.Initiate(_fc, _zc, this);
+            fakturaForm.Show();
+        }
+
+        public void PridajTab()
+        {
+            TabPage nTab = new TabPage();
+            tabControl1.TabPages.Add(nTab);
+            var i = tabControl1.TabPages.Count;
+            nTab.Name = "Tab" + i;
+            nTab.Text = "Faktúra " + _fc.Faktury.Last().Cislo;
+            TabControl cnt = new TabControl();
+            cnt.Initiate(_fc, _zc, this, i-1);
+            cnt.Name = "Cnt" + i;
+            cnt.Dock = DockStyle.Fill;
+            nTab.Controls.Add(cnt);
         }
     }
 }
