@@ -164,6 +164,7 @@
             this.zavrietButton.TabIndex = 25;
             this.zavrietButton.Text = "Uložiť a zavrieť";
             this.zavrietButton.UseVisualStyleBackColor = true;
+            this.zavrietButton.Click += new System.EventHandler(this.zavrietButton_Click);
             // 
             // zmazatButton
             // 
@@ -173,6 +174,7 @@
             this.zmazatButton.TabIndex = 24;
             this.zmazatButton.Text = "Zmazať";
             this.zmazatButton.UseVisualStyleBackColor = true;
+            this.zmazatButton.Click += new System.EventHandler(this.zmazatButton_Click);
             // 
             // upravitButton
             // 
@@ -182,6 +184,7 @@
             this.upravitButton.TabIndex = 23;
             this.upravitButton.Text = "Upraviť";
             this.upravitButton.UseVisualStyleBackColor = true;
+            this.upravitButton.Click += new System.EventHandler(this.upravitButton_Click);
             // 
             // pridatButton
             // 

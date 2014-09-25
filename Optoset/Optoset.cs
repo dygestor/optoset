@@ -19,7 +19,6 @@ namespace Optoset
         private PobockyForm pobockyForm;
         private ZmluvyForm zmluvyForm;
         private DiagnozyForm diagnozyForm;
-        private PomockyForm pomockyForm;
         private CennikyForm cennikyForm;
         private NastaveniaForm nastaveniaForm;
         private LekariForm lekariForm;
@@ -68,13 +67,6 @@ namespace Optoset
             diagnozyForm = new DiagnozyForm();
             diagnozyForm.Initiate();
             diagnozyForm.Show();
-        }
-
-        private void pomockyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            pomockyForm = new PomockyForm();
-            pomockyForm.Initiate();
-            pomockyForm.Show();
         }
 
         private void cennikyToolStripMenuItem_Click(object sender, EventArgs e)

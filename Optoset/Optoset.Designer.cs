@@ -42,7 +42,6 @@
             this.pobockyPoistovniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cennikyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pomockyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diagnozyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.napovedaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oAplikaciiOptosetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +104,6 @@
             this.pobockyPoistovniToolStripMenuItem,
             this.toolStripSeparator2,
             this.cennikyToolStripMenuItem,
-            this.pomockyToolStripMenuItem,
             this.diagnozyToolStripMenuItem});
             this.zobrazToolStripMenuItem.Name = "zobrazToolStripMenuItem";
             this.zobrazToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
@@ -156,13 +154,6 @@
             this.cennikyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.cennikyToolStripMenuItem.Text = "Cenníky";
             this.cennikyToolStripMenuItem.Click += new System.EventHandler(this.cennikyToolStripMenuItem_Click);
-            // 
-            // pomockyToolStripMenuItem
-            // 
-            this.pomockyToolStripMenuItem.Name = "pomockyToolStripMenuItem";
-            this.pomockyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.pomockyToolStripMenuItem.Text = "Pomôcky";
-            this.pomockyToolStripMenuItem.Click += new System.EventHandler(this.pomockyToolStripMenuItem_Click);
             // 
             // diagnozyToolStripMenuItem
             // 
@@ -216,7 +207,6 @@
         private System.Windows.Forms.ToolStripMenuItem lekariToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pobockyPoistovniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cennikyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pomockyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem diagnozyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oAplikaciiOptosetToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

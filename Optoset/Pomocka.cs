@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +11,18 @@ namespace Optoset
 {
     public class Pomocka
     {
-        public string Item1, Item2, Item3, Item4, Item5, Item6, Item7;
+        public string Nazov, Popis, Kod, CenaMFplatca, CenaMFneplatca, CenaPoistovna, Dph, NepotrebneVeci;
 
-        public Pomocka(string i1, string i2, string i3, string i4, string i5, string i6, string i7)
+        public Pomocka(string i1, string i2, string i3, string i4, string i5, string i6, string i7, string i8 = "|||")
         {
-            Item1 = i1;
-            Item2 = i2;
-            Item3 = i3;
-            Item4 = i4;
-            Item5 = i5;
-            Item6 = i6;
-            Item7 = i7;
+            Nazov = i1; //nazov
+            Popis = i2; //popis
+            Kod = i3; //kod
+            CenaMFplatca = i4.Equals("") ? "0" : i4; //cena MF pre platcu
+            CenaMFneplatca = i5.Equals("") ? "0" : i5; //cena MF pre neplatcu
+            CenaPoistovna = i6; //hradi poistovna
+            Dph = i7; //DPH
+            NepotrebneVeci = i8;
         }
 
         public bool Validate()
@@ -61,41 +63,31 @@ namespace Optoset
         private bool ValidateDPH()
         {
             double d;
-            return double.TryParse(Item7, out d);
+            return double.TryParse(Dph, out d);
         }
 
         private bool ValidateCenaPoistovne()
         {
-            if (!Item5.Equals(""))
-            {
-                double d;
-                return double.TryParse(Item5, out d);
-            }
-
-            if (!Item6.Equals(""))
-            {
-                double d;
-                return double.TryParse(Item6, out d);
-            }
-
-            return false;
+            double d;
+            return double.TryParse(CenaPoistovna, NumberStyles.Number, CultureInfo.InvariantCulture, out d);
         }
 
         private bool ValidateCenaMF()
         {
             double d;
-            return double.TryParse(Item4, out d);
+            var item = Settings.JePlatca() ? CenaMFplatca : CenaMFneplatca;
+            return double.TryParse(item, NumberStyles.Number, CultureInfo.InvariantCulture, out d);
         }
 
         private bool ValidateNazov()
         {
-            return !Item1.Equals("");
+            return !Nazov.Equals("");
         }
 
         private bool ValidateKod()
         {
             int i;
-            return Item3.Length == 5 && int.TryParse(Item3, out i);
+            return Kod.Length == 5 && int.TryParse(Kod, out i);
         }
     }
 }
