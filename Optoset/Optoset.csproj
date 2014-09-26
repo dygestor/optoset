@@ -105,6 +105,14 @@
     </Compile>
     <Compile Include="Pobocka.cs" />
     <Compile Include="Pomocka.cs" />
+    <Compile Include="Poukaz.cs" />
+    <Compile Include="PoukazForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PoukazForm.Designer.cs">
+      <DependentUpon>PoukazForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PoukazPomocka.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TabControl.cs">
       <SubType>UserControl</SubType>
@@ -149,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PobockyForm.resx">
       <DependentUpon>PobockyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PoukazForm.resx">
+      <DependentUpon>PoukazForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

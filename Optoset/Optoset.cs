@@ -33,8 +33,11 @@ namespace Optoset
         //diagnozy
         private List<Tuple<string, string>> _diagnozy;
 
-        //filenames
-        
+        public System.Windows.Forms.TabControl TabControl
+        {
+            get { return tabControl1; }
+            set { tabControl1 = value; }
+        }
 
         public Optoset()
         {
@@ -119,10 +122,11 @@ namespace Optoset
             nTab.Name = "Tab" + i;
             nTab.Text = "Faktúra " + _fc.Faktury.Last().Cislo;
             TabControl cnt = new TabControl();
-            cnt.Initiate(_fc, _zc, this, i-1);
+            cnt.Initiate(_fc, _zc, _lc, _pc, this, i-1);
             cnt.Name = "Cnt" + i;
             cnt.Dock = DockStyle.Fill;
             nTab.Controls.Add(cnt);
+            _fc.Faktury.Last().TabControl = cnt;
         }
     }
 }

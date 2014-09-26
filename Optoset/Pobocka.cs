@@ -49,5 +49,10 @@ namespace Optoset
         {
             return !Nazov.Equals("");
         }
+
+        public string ToString()
+        {
+            return Cislo + " " + Nazov;
+        }
     }
 }

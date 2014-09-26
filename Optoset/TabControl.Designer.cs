@@ -30,7 +30,6 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,13 +47,16 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.upraviťToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nastaveniaFaktúryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.pridaťPoukazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.upraviťPoukazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zmazaťPoukazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pridaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.upraviťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.zmazaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.pridaťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upraviťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zmazaťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -66,6 +68,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.listView2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
@@ -80,7 +83,6 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -101,11 +103,8 @@
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Dávka";
-            this.columnHeader1.Width = 50;
+            this.listView1.VirtualMode = true;
+            this.listView1.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.listView1_RetrieveVirtualItem);
             // 
             // columnHeader2
             // 
@@ -114,7 +113,7 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "IČ pacienta";
+            this.columnHeader3.Text = "RČ pacienta";
             this.columnHeader3.Width = 80;
             // 
             // columnHeader4
@@ -196,56 +195,72 @@
             // 
             // menuStrip2
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.menuStrip2, 2);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.upraviťToolStripMenuItem});
+            this.upraviťToolStripMenuItem,
+            this.pridaťPoukazToolStripMenuItem1,
+            this.upraviťPoukazToolStripMenuItem1,
+            this.zmazaťPoukazToolStripMenuItem1});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1001, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(500, 24);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
             // 
             // upraviťToolStripMenuItem
             // 
-            this.upraviťToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nastaveniaFaktúryToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.pridaťPoukazToolStripMenuItem,
-            this.upraviťPoukazToolStripMenuItem,
-            this.zmazaťPoukazToolStripMenuItem});
             this.upraviťToolStripMenuItem.Name = "upraviťToolStripMenuItem";
-            this.upraviťToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.upraviťToolStripMenuItem.Text = "Upraviť";
+            this.upraviťToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.upraviťToolStripMenuItem.Text = "Nastavenia faktúry";
+            this.upraviťToolStripMenuItem.Click += new System.EventHandler(this.upraviťToolStripMenuItem_Click);
             // 
-            // nastaveniaFaktúryToolStripMenuItem
+            // pridaťPoukazToolStripMenuItem1
             // 
-            this.nastaveniaFaktúryToolStripMenuItem.Name = "nastaveniaFaktúryToolStripMenuItem";
-            this.nastaveniaFaktúryToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.nastaveniaFaktúryToolStripMenuItem.Text = "Nastavenia faktúry";
-            this.nastaveniaFaktúryToolStripMenuItem.Click += new System.EventHandler(this.nastaveniaFaktúryToolStripMenuItem_Click);
+            this.pridaťPoukazToolStripMenuItem1.Name = "pridaťPoukazToolStripMenuItem1";
+            this.pridaťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(92, 20);
+            this.pridaťPoukazToolStripMenuItem1.Text = "Pridať poukaz";
+            this.pridaťPoukazToolStripMenuItem1.Click += new System.EventHandler(this.pridaťPoukazToolStripMenuItem1_Click);
             // 
-            // toolStripSeparator4
+            // upraviťPoukazToolStripMenuItem1
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(169, 6);
+            this.upraviťPoukazToolStripMenuItem1.Name = "upraviťPoukazToolStripMenuItem1";
+            this.upraviťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(99, 20);
+            this.upraviťPoukazToolStripMenuItem1.Text = "Upraviť poukaz";
             // 
-            // pridaťPoukazToolStripMenuItem
+            // zmazaťPoukazToolStripMenuItem1
             // 
-            this.pridaťPoukazToolStripMenuItem.Name = "pridaťPoukazToolStripMenuItem";
-            this.pridaťPoukazToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.pridaťPoukazToolStripMenuItem.Text = "Pridať poukaz";
+            this.zmazaťPoukazToolStripMenuItem1.Name = "zmazaťPoukazToolStripMenuItem1";
+            this.zmazaťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(100, 20);
+            this.zmazaťPoukazToolStripMenuItem1.Text = "Zmazať poukaz";
             // 
-            // upraviťPoukazToolStripMenuItem
+            // menuStrip1
             // 
-            this.upraviťPoukazToolStripMenuItem.Name = "upraviťPoukazToolStripMenuItem";
-            this.upraviťPoukazToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.upraviťPoukazToolStripMenuItem.Text = "Upraviť poukaz";
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pridaťPomôckuToolStripMenuItem,
+            this.upraviťPomôckuToolStripMenuItem,
+            this.zmazaťPomôckuToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(500, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(501, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // zmazaťPoukazToolStripMenuItem
+            // pridaťPomôckuToolStripMenuItem
             // 
-            this.zmazaťPoukazToolStripMenuItem.Name = "zmazaťPoukazToolStripMenuItem";
-            this.zmazaťPoukazToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.zmazaťPoukazToolStripMenuItem.Text = "Zmazať poukaz";
+            this.pridaťPomôckuToolStripMenuItem.Name = "pridaťPomôckuToolStripMenuItem";
+            this.pridaťPomôckuToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+            this.pridaťPomôckuToolStripMenuItem.Text = "Pridať pomôcku";
+            // 
+            // upraviťPomôckuToolStripMenuItem
+            // 
+            this.upraviťPomôckuToolStripMenuItem.Name = "upraviťPomôckuToolStripMenuItem";
+            this.upraviťPomôckuToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.upraviťPomôckuToolStripMenuItem.Text = "Upraviť pomôcku";
+            // 
+            // zmazaťPomôckuToolStripMenuItem
+            // 
+            this.zmazaťPomôckuToolStripMenuItem.Name = "zmazaťPomôckuToolStripMenuItem";
+            this.zmazaťPomôckuToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
+            this.zmazaťPomôckuToolStripMenuItem.Text = "Zmazať pomôcku";
             // 
             // TabControl
             // 
@@ -258,6 +273,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,7 +284,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
@@ -285,10 +301,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem upraviťToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nastaveniaFaktúryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem pridaťPoukazToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem upraviťPoukazToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zmazaťPoukazToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pridaťPoukazToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem upraviťPoukazToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem zmazaťPoukazToolStripMenuItem1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem pridaťPomôckuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem upraviťPomôckuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zmazaťPomôckuToolStripMenuItem;
     }
 }

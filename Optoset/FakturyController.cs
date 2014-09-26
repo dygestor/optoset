@@ -48,7 +48,7 @@ namespace Optoset
             Faktura f = new Faktura(cislo, poistovna, obdobie, cennik);
             if (f.Validates())
             {
-                if (!Kluce.Contains(cislo))
+                if (!Kluce.Contains(cislo) || Faktury[index].Cislo == cislo)
                 {
                     Kluce.Remove(Faktury[index].Cislo);
                     Faktury[index] = f;

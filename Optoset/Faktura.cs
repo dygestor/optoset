@@ -12,6 +12,8 @@ namespace Optoset
         public string Poistovna;
         public string Obdobie;
         public string Cennik;
+        public List<Poukaz> Poukazy;
+        public TabControl TabControl;
 
         public Faktura(string cislo, string poistovna, string obdobie, string cennik)
         {
@@ -19,6 +21,8 @@ namespace Optoset
             Poistovna = poistovna;
             Obdobie = obdobie;
             Cennik = cennik;
+
+            Poukazy = new List<Poukaz>();
         }
 
         public bool Validates()

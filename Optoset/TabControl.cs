@@ -14,6 +14,8 @@ namespace Optoset
     {
         private FakturyController _fc;
         private ZmluvyController _zc;
+        private LekariController _lc;
+        private PobockyController _pc;
         private Optoset _opt;
         private int _fIndex;
         public TabControl()
@@ -27,19 +29,36 @@ namespace Optoset
             set { listView1 = value; }
         }
 
-        private void nastaveniaFaktúryToolStripMenuItem_Click(object sender, EventArgs e)
+        public void Initiate(FakturyController fc, ZmluvyController zc, LekariController lc, PobockyController pc, Optoset opt, int index)
+        {
+            _fc = fc;
+            _zc = zc;
+            _lc = lc;
+            _pc = pc;
+            _opt = opt;
+            _fIndex = index;
+        }
+
+        private void upraviťToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ff = new FakturaForm();
             ff.Initiate(_fc, _zc, _opt, _fIndex);
             ff.Show();
         }
 
-        public void Initiate(FakturyController fc, ZmluvyController zc, Optoset opt, int index)
+        private void pridaťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            _fc = fc;
-            _zc = zc;
-            _opt = opt;
-            _fIndex = index;
+            var pf = new PoukazForm();
+            pf.Initiate(_fc, _lc, _pc, _opt, _fIndex);
+            pf.Show();
+        }
+
+        private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            Poukaz p = _fc.Faktury[_fIndex].Poukazy[e.ItemIndex];
+            string[] item = { (e.ItemIndex + 1).ToString(), p.RodneCislo, p.Pobocka.ToString(), p.Lekar.Kod, p.Lekar.Kpzs, p.Diagnoza, p.DatumPredpisania, p.DatumVydaja, "0", "0" };
+            ListViewItem lvi = new ListViewItem(item);
+            e.Item = lvi;
         }
     }
 }
