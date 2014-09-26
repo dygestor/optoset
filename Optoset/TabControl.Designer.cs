@@ -97,6 +97,7 @@
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 33);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(494, 589);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -225,6 +226,7 @@
             this.upraviťPoukazToolStripMenuItem1.Name = "upraviťPoukazToolStripMenuItem1";
             this.upraviťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(99, 20);
             this.upraviťPoukazToolStripMenuItem1.Text = "Upraviť poukaz";
+            this.upraviťPoukazToolStripMenuItem1.Click += new System.EventHandler(this.upraviťPoukazToolStripMenuItem1_Click);
             // 
             // zmazaťPoukazToolStripMenuItem1
             // 

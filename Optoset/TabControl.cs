@@ -18,6 +18,8 @@ namespace Optoset
         private PobockyController _pc;
         private Optoset _opt;
         private int _fIndex;
+        private List<Tuple<string, string>> _diagnozy;
+
         public TabControl()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace Optoset
             set { listView1 = value; }
         }
 
-        public void Initiate(FakturyController fc, ZmluvyController zc, LekariController lc, PobockyController pc, Optoset opt, int index)
+        public void Initiate(FakturyController fc, ZmluvyController zc, LekariController lc, PobockyController pc, Optoset opt, int index, List<Tuple<string, string>> diagnozy)
         {
             _fc = fc;
             _zc = zc;
@@ -37,6 +39,7 @@ namespace Optoset
             _pc = pc;
             _opt = opt;
             _fIndex = index;
+            _diagnozy = diagnozy;
         }
 
         private void upraviťToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,7 +52,7 @@ namespace Optoset
         private void pridaťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             var pf = new PoukazForm();
-            pf.Initiate(_fc, _lc, _pc, _opt, _fIndex);
+            pf.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy);
             pf.Show();
         }
 
@@ -59,6 +62,18 @@ namespace Optoset
             string[] item = { (e.ItemIndex + 1).ToString(), p.RodneCislo, p.Pobocka.ToString(), p.Lekar.Kod, p.Lekar.Kpzs, p.Diagnoza, p.DatumPredpisania, p.DatumVydaja, "0", "0" };
             ListViewItem lvi = new ListViewItem(item);
             e.Item = lvi;
+        }
+
+        private void upraviťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť poukaz.");
+                return;
+            }
+            var pf = new PoukazForm();
+            pf.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy, listView1.SelectedIndices[0]);
+            pf.Show();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,20 +14,20 @@ namespace Optoset
 {
     public partial class PoukazForm : Form
     {
-
         private PobockyController _pc;
         private LekariController _lc;
         private FakturyController _fc;
         private Optoset _opt;
-        private int _fIndex;
+        private int _fIndex, _pIndex;
 
         private List<Tuple<string, string>> _diagnozy;
 
-        private const string diagnozyFileName = "diagnozy.csv";
+        
 
         public PoukazForm()
         {
             InitializeComponent();
+
         }
 
         private void PoukazForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -35,13 +36,14 @@ namespace Optoset
             Hide();
         }
 
-        public void Initiate(FakturyController fc, LekariController lc, PobockyController pc, Optoset opt, int fIndex)
+        public void Initiate(FakturyController fc, LekariController lc, PobockyController pc, Optoset opt, int fIndex, List<Tuple<string, string>> diagnozy, int pIndex = -1)
         {
             _fc = fc;
             _lc = lc;
             _pc = pc;
             _opt = opt;
             _fIndex = fIndex;
+            _pIndex = pIndex;
 
             comboBox1.Items.Clear();
             comboBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
@@ -61,34 +63,31 @@ namespace Optoset
                 comboBox2.Items.Add(l.Priezvisko + " " + l.Meno + " " + l.Titul);
                 comboBox2.AutoCompleteCustomSource.Add(l.Priezvisko + " " + l.Meno + " " + l.Titul);
             }
-
-
-            if (!File.Exists(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName))
-            {
-                MessageBox.Show("Súbor s diagnózami nebol nájdený");
-                return;
-            }
-
-            _diagnozy = new List<Tuple<string, string>>();
-            using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (BufferedStream bs = new BufferedStream(fs))
-            using (StreamReader sr = new StreamReader(bs))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] row = line.Split('|');
-                    _diagnozy.Add(new Tuple<string, string>(row[0], row[2]));
-                }
-            }
-
-            //comboBox3.Items.Clear();
+            
+            comboBox3.Items.Clear();
             comboBox3.AutoCompleteCustomSource = new AutoCompleteStringCollection();
-            foreach (var d in _diagnozy)
+            comboBox3.BeginUpdate();
+            foreach (var d in diagnozy)
             {
-                //comboBox3.Items.Add(d.Item1 + " " + d.Item2);
+                comboBox3.Items.Add(d.Item1 + " " + d.Item2);
                 comboBox3.AutoCompleteCustomSource.Add(d.Item1 + " " + d.Item2);
             }
+            comboBox3.EndUpdate();
+
+            if (pIndex > -1)
+            {
+                Poukaz p = _fc.Faktury[_fIndex].Poukazy[pIndex];
+                comboBox1.Text = p.Pobocka.ToString();
+                textBox1.Text = p.RodneCislo;
+                comboBox2.Text = p.Lekar.ToString();
+                textBox2.Text = p.Lekar.Kod;
+                textBox3.Text = p.Lekar.Kpzs;
+                comboBox3.Text = p.Diagnoza;
+                dateTimePicker1.Text = p.DatumPredpisania;
+                dateTimePicker2.Text = p.DatumVydaja;
+                button1.Text = "Upraviť poukaz";
+            }
+
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,8 +105,15 @@ namespace Optoset
 
             if (poukaz.Validate())
             {
-                _fc.Faktury[_fIndex].Poukazy.Add(poukaz);
-                _fc.Faktury[_fIndex].TabControl.LV1.VirtualListSize = _fc.Faktury[_fIndex].Poukazy.Count;
+                if (_pIndex > -1)
+                {
+                    _fc.Faktury[_fIndex].Poukazy[_pIndex] = poukaz;
+                }
+                else
+                {
+                    _fc.Faktury[_fIndex].Poukazy.Add(poukaz);
+                    _fc.Faktury[_fIndex].TabControl.LV1.VirtualListSize = _fc.Faktury[_fIndex].Poukazy.Count;
+                }
                 _fc.Faktury[_fIndex].TabControl.LV1.Invalidate();
                 Close();
             }

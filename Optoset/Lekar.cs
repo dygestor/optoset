@@ -86,5 +86,10 @@ namespace Optoset
             double i;
             return (Kpzs.Length == 12) && (double.TryParse(Kpzs.Substring(1), out i)) && (Char.IsUpper(Convert.ToChar(Kpzs.Substring(0, 1))));
         }
+
+        public string ToString()
+        {
+            return Priezvisko + " " + Meno + " " + Titul;
+        }
     }
 }

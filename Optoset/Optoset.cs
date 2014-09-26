@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -33,6 +34,8 @@ namespace Optoset
         //diagnozy
         private List<Tuple<string, string>> _diagnozy;
 
+        private const string diagnozyFileName = "diagnozy.csv";
+
         public System.Windows.Forms.TabControl TabControl
         {
             get { return tabControl1; }
@@ -47,6 +50,30 @@ namespace Optoset
             _zc = new ZmluvyController();
             _lc = new LekariController();
             _fc = new FakturyController();
+
+            new Thread(new ThreadStart(Run)).Start();
+        }
+
+        private void Run()
+        {
+            if (!File.Exists(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName))
+            {
+                MessageBox.Show("Súbor s diagnózami nebol nájdený");
+                return;
+            }
+
+            _diagnozy = new List<Tuple<string, string>>();
+            using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + diagnozyFileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (BufferedStream bs = new BufferedStream(fs))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] row = line.Split('|');
+                    _diagnozy.Add(new Tuple<string, string>(row[0], row[2]));
+                }
+            }
         }
 
         private void zobrazToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,7 +149,7 @@ namespace Optoset
             nTab.Name = "Tab" + i;
             nTab.Text = "Faktúra " + _fc.Faktury.Last().Cislo;
             TabControl cnt = new TabControl();
-            cnt.Initiate(_fc, _zc, _lc, _pc, this, i-1);
+            cnt.Initiate(_fc, _zc, _lc, _pc, this, i-1, _diagnozy);
             cnt.Name = "Cnt" + i;
             cnt.Dock = DockStyle.Fill;
             nTab.Controls.Add(cnt);
