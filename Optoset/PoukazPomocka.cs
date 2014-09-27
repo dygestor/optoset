@@ -10,10 +10,14 @@ namespace Optoset
     {
         public Pomocka Pomocka;
         public int Mnozstvo;
+        public double HradiPoistovna, HradiPacient;
 
-        public PoukazPomocka()
+        public PoukazPomocka(Pomocka pomocka, int mnozstvo, double hradiPoistovna, double hradiPacient)
         {
-
+            Pomocka = pomocka;
+            Mnozstvo = mnozstvo;
+            HradiPacient = hradiPacient;
+            HradiPoistovna = hradiPoistovna;
         }
     }
 }

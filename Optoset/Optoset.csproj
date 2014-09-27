@@ -105,6 +105,12 @@
     </Compile>
     <Compile Include="Pobocka.cs" />
     <Compile Include="Pomocka.cs" />
+    <Compile Include="PomockaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PomockaForm.Designer.cs">
+      <DependentUpon>PomockaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Poukaz.cs" />
     <Compile Include="PoukazForm.cs">
       <SubType>Form</SubType>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PobockyForm.resx">
       <DependentUpon>PobockyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PomockaForm.resx">
+      <DependentUpon>PomockaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PoukazForm.resx">
       <DependentUpon>PoukazForm.cs</DependentUpon>

@@ -19,6 +19,8 @@ namespace Optoset
         private Optoset _opt;
         private int _fIndex;
         private List<Tuple<string, string>> _diagnozy;
+        private PoukazForm poukazForm;
+        private PomockaForm pomockaForm;
 
         public TabControl()
         {
@@ -29,6 +31,12 @@ namespace Optoset
         {
             get { return listView1; }
             set { listView1 = value; }
+        }
+
+        public ListView LV2
+        {
+            get { return listView2; }
+            set { listView2 = value; }
         }
 
         public void Initiate(FakturyController fc, ZmluvyController zc, LekariController lc, PobockyController pc, Optoset opt, int index, List<Tuple<string, string>> diagnozy)
@@ -46,14 +54,14 @@ namespace Optoset
         {
             var ff = new FakturaForm();
             ff.Initiate(_fc, _zc, _opt, _fIndex);
-            ff.Show();
+            ff.ShowDialog(this);
         }
 
         private void pridaťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var pf = new PoukazForm();
-            pf.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy);
-            pf.Show();
+            poukazForm = new PoukazForm();
+            poukazForm.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy);
+            poukazForm.ShowDialog(this);
         }
 
         private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
@@ -71,9 +79,107 @@ namespace Optoset
                 MessageBox.Show("Musíte zvoliť poukaz.");
                 return;
             }
-            var pf = new PoukazForm();
-            pf.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy, listView1.SelectedIndices[0]);
-            pf.Show();
+
+            if (poukazForm != null)
+            {
+                poukazForm.NacitajPoukaz(listView1.SelectedIndices[0]);
+                poukazForm.ShowDialog(this);
+            }
+            else
+            {
+                poukazForm = new PoukazForm();
+                poukazForm.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy, listView1.SelectedIndices[0]);
+                poukazForm.ShowDialog(this);
+            }
+        }
+
+        private void zmazaťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť poukaz.");
+                return;
+            }
+
+            DialogResult dr = MessageBox.Show("Naozaj chcete zmazať vybraný poukaz?", "Potvrdenie voľby", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                _fc.Faktury[_fIndex].Poukazy.RemoveAt(listView1.SelectedIndices[0]);
+                listView1.VirtualListSize = _fc.Faktury[_fIndex].Poukazy.Count;
+                listView1.Invalidate();
+
+                listView2.Items.Clear();
+            }
+        }
+
+        private void pridaťPomôckuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť poukaz, ku ktorému chcete pridať poôcku.");
+                return;
+            }
+            pomockaForm = new PomockaForm();
+            pomockaForm.Initiate(_fc.Faktury[_fIndex], listView1.SelectedIndices[0]);
+            pomockaForm.ShowDialog(this);
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                foreach (var p in _fc.Faktury[_fIndex].Poukazy[listView1.SelectedIndices[0]].Pomocky)
+                {
+                    string[] item =
+                    {
+                        p.Pomocka.Kod + " " + p.Pomocka.Nazov + " (" + p.Pomocka.Popis + ")", p.Mnozstvo.ToString(),
+                        p.HradiPoistovna.ToString(), p.HradiPacient.ToString()
+                    };
+                    ListViewItem lvi = new ListViewItem(item);
+                    _fc.Faktury[_fIndex].TabControl.LV2.Items.Add(lvi);
+                }
+            }
+        }
+
+        private void upraviťPomôckuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť poukaz, ku ktorému chcete pridať pomôcku.");
+                return;
+            }
+
+            if (listView2.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť pomôcku, ktorú chcete upraviť.");
+                return;
+            }
+            pomockaForm = new PomockaForm();
+            pomockaForm.Initiate(_fc.Faktury[_fIndex], listView1.SelectedIndices[0], listView2.SelectedIndices[0]);
+            pomockaForm.ShowDialog(this);
+        }
+
+        private void zmazaťPomôckuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť poukaz.");
+                return;
+            }
+
+            if (listView2.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("Musíte zvoliť pomôcku, ktorú chcete zmazať.");
+                return;
+            }
+
+            DialogResult dr = MessageBox.Show("Naozaj chcete zmazať vybranú pomôcku?", "Potvrdenie voľby", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                _fc.Faktury[_fIndex].Poukazy[listView1.SelectedIndices[0]].Pomocky.RemoveAt(listView2.SelectedIndices[0]);
+                listView2.Items.RemoveAt(listView2.SelectedIndices[0]);
+            }
         }
     }
 }

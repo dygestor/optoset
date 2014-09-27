@@ -16,3 +16,4 @@ D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.LekariForm.resources
 D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.TabControl.resources
 D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.FakturaForm.resources
 D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.PoukazForm.resources
+D:\Dokumenty\Optoset\Optoset\obj\Debug\Optoset.PomockaForm.resources

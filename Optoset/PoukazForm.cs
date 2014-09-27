@@ -107,6 +107,7 @@ namespace Optoset
             {
                 if (_pIndex > -1)
                 {
+                    poukaz.Pomocky = _fc.Faktury[_fIndex].Poukazy[_pIndex].Pomocky;
                     _fc.Faktury[_fIndex].Poukazy[_pIndex] = poukaz;
                 }
                 else
@@ -117,6 +118,33 @@ namespace Optoset
                 _fc.Faktury[_fIndex].TabControl.LV1.Invalidate();
                 Close();
             }
+        }
+
+        public void Clear()
+        {
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            comboBox3.Text = "";
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            dateTimePicker1.Text = "";
+            dateTimePicker2.Text = "";
+        }
+
+        public void NacitajPoukaz(int index)
+        {
+            _pIndex = index;
+            Poukaz p = _fc.Faktury[_fIndex].Poukazy[index];
+            comboBox1.Text = p.Pobocka.ToString();
+            textBox1.Text = p.RodneCislo;
+            comboBox2.Text = p.Lekar.ToString();
+            textBox2.Text = p.Lekar.Kod;
+            textBox3.Text = p.Lekar.Kpzs;
+            comboBox3.Text = p.Diagnoza;
+            dateTimePicker1.Text = p.DatumPredpisania;
+            dateTimePicker2.Text = p.DatumVydaja;
+            button1.Text = "Upraviť poukaz";
         }
     }
 }

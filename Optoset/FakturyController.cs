@@ -51,7 +51,10 @@ namespace Optoset
                 if (!Kluce.Contains(cislo) || Faktury[index].Cislo == cislo)
                 {
                     Kluce.Remove(Faktury[index].Cislo);
-                    Faktury[index] = f;
+                    Faktury[index].Cislo = cislo;
+                    Faktury[index].Poistovna = poistovna;
+                    Faktury[index].Obdobie = obdobie;
+                    Faktury[index].Cennik = cennik;
                     Kluce.Add(cislo);
                     return true;
                 }

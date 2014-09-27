@@ -85,42 +85,42 @@ namespace Optoset
         {
             pobockyForm = new PobockyForm();
             pobockyForm.Initiate(_pc);
-            pobockyForm.Show();
+            pobockyForm.ShowDialog(this);
         }
 
         private void zmluvyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             zmluvyForm = new ZmluvyForm();
             zmluvyForm.Initiate(_zc);
-            zmluvyForm.Show();
+            zmluvyForm.ShowDialog(this);
         }
 
         private void diagnozyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             diagnozyForm = new DiagnozyForm();
             diagnozyForm.Initiate();
-            diagnozyForm.Show();
+            diagnozyForm.ShowDialog(this);
         }
 
         private void cennikyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cennikyForm = new CennikyForm();
             cennikyForm.Initiate();
-            cennikyForm.Show();
+            cennikyForm.ShowDialog(this);
         }
 
         private void nastaveniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             nastaveniaForm = new NastaveniaForm();
             nastaveniaForm.Initiate();
-            nastaveniaForm.Show();
+            nastaveniaForm.ShowDialog(this);
         }
 
         private void lekariToolStripMenuItem_Click(object sender, EventArgs e)
         {
             lekariForm = new LekariForm();
             lekariForm.Initiate(_lc);
-            lekariForm.Show();
+            lekariForm.ShowDialog(this);
         }
 
         private void Optoset_Shown(object sender, EventArgs e)
@@ -130,7 +130,7 @@ namespace Optoset
                 MessageBox.Show("Prosím vyplňte nastavenia aplikácie.");
                 nastaveniaForm = new NastaveniaForm();
                 nastaveniaForm.Initiate();
-                nastaveniaForm.Show();
+                nastaveniaForm.ShowDialog(this);
             }
         }
 
@@ -138,7 +138,7 @@ namespace Optoset
         {
             fakturaForm = new FakturaForm();
             fakturaForm.Initiate(_fc, _zc, this);
-            fakturaForm.Show();
+            fakturaForm.ShowDialog(this);
         }
 
         public void PridajTab()

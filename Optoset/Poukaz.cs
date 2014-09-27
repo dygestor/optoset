@@ -26,6 +26,8 @@ namespace Optoset
             Diagnoza = diagnoza;
             DatumPredpisania = datumPredpisania;
             DatumVydaja = datumVydaja;
+
+            Pomocky = new List<PoukazPomocka>();
         }
 
         public bool Validate()
