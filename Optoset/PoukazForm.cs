@@ -109,11 +109,13 @@ namespace Optoset
                 {
                     poukaz.Pomocky = _fc.Faktury[_fIndex].Poukazy[_pIndex].Pomocky;
                     _fc.Faktury[_fIndex].Poukazy[_pIndex] = poukaz;
+                    _fc.Faktury[_fIndex].TabControl.LV1.Items[_pIndex].Selected = true;
                 }
                 else
                 {
                     _fc.Faktury[_fIndex].Poukazy.Add(poukaz);
                     _fc.Faktury[_fIndex].TabControl.LV1.VirtualListSize = _fc.Faktury[_fIndex].Poukazy.Count;
+                    _fc.Faktury[_fIndex].TabControl.LV1.Items[_fc.Faktury[_fIndex].TabControl.LV1.Items.Count - 1].Selected = true;
                 }
                 _fc.Faktury[_fIndex].TabControl.LV1.Invalidate();
                 Close();

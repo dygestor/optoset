@@ -59,9 +59,16 @@ namespace Optoset
 
         private void pridaťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            poukazForm = new PoukazForm();
-            poukazForm.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy);
-            poukazForm.ShowDialog(this);
+            if (poukazForm != null)
+            {
+                poukazForm.ShowDialog(this);
+            }
+            else
+            {
+                poukazForm = new PoukazForm();
+                poukazForm.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy);
+                poukazForm.ShowDialog(this);
+            }
         }
 
         private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
@@ -105,10 +112,15 @@ namespace Optoset
             if (dr == DialogResult.Yes)
             {
                 _fc.Faktury[_fIndex].Poukazy.RemoveAt(listView1.SelectedIndices[0]);
+                var index = (listView1.SelectedIndices[0] == _fc.Faktury[_fIndex].Poukazy.Count)
+                                ? _fc.Faktury[_fIndex].Poukazy.Count - 1
+                                : listView1.SelectedIndices[0];
                 listView1.VirtualListSize = _fc.Faktury[_fIndex].Poukazy.Count;
+                if (index < _fc.Faktury[_fIndex].Poukazy.Count && index > -1)
+                {
+                    listView1.Items[index].Selected = true;
+                }
                 listView1.Invalidate();
-
-                listView2.Items.Clear();
             }
         }
 

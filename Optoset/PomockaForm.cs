@@ -34,7 +34,8 @@ namespace Optoset
 
             if (_pomockaIndex > -1)
             {
-                comboBox1.SelectedIndex = _pomockaIndex;
+                var index = _pomocky.FindIndex(x => x.Kod == _faktura.Poukazy[_poukazIndex].Pomocky[_pomockaIndex].Pomocka.Kod);
+                comboBox1.SelectedIndex = index;
                 textBox1.Text = _faktura.Poukazy[_poukazIndex].Pomocky[_pomockaIndex].Mnozstvo.ToString();
                 textBox2.Text = _faktura.Poukazy[_poukazIndex].Pomocky[_pomockaIndex].HradiPoistovna.ToString();
                 textBox3.Text = _faktura.Poukazy[_poukazIndex].Pomocky[_pomockaIndex].HradiPacient.ToString();
@@ -137,11 +138,13 @@ namespace Optoset
             {
                 _faktura.Poukazy[_poukazIndex].Pomocky[_pomockaIndex] = p;
                 _faktura.TabControl.LV2.Items[_pomockaIndex] = lvi;
+                _faktura.TabControl.LV2.Items[_pomockaIndex].Selected = true;
             }
             else
             {
                 _faktura.Poukazy[_poukazIndex].Pomocky.Add(p);
                 _faktura.TabControl.LV2.Items.Add(lvi);
+                _faktura.TabControl.LV2.Items[_faktura.TabControl.LV2.Items.Count - 1].Selected = true;
             }
             Close();
         }
