@@ -148,5 +148,18 @@ namespace Optoset
             dateTimePicker2.Text = p.DatumVydaja;
             button1.Text = "Upraviť poukaz";
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (textBox1.Text.Length == 6)
+            {
+                textBox1.Text += "/";
+                textBox1.Select(textBox1.Text.Length, 0);
+            }
+        }
     }
 }
