@@ -64,8 +64,8 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.listView2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 1, 0);
@@ -99,8 +99,7 @@
             this.listView1.Location = new System.Drawing.Point(3, 33);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(494, 589);
-            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listView1.Size = new System.Drawing.Size(594, 589);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -167,10 +166,10 @@
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(503, 33);
+            this.listView2.Location = new System.Drawing.Point(603, 33);
+            this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(495, 589);
-            this.listView2.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listView2.Size = new System.Drawing.Size(395, 589);
             this.listView2.TabIndex = 3;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -200,9 +199,9 @@
             this.pridaťPomôckuToolStripMenuItem,
             this.upraviťPomôckuToolStripMenuItem,
             this.zmazaťPomôckuToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(500, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(600, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(501, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(401, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -236,7 +235,7 @@
             this.zmazaťPoukazToolStripMenuItem1});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(500, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(600, 24);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
             // 
