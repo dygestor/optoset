@@ -59,22 +59,23 @@ namespace Optoset
 
         private void pridaťPoukazToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (poukazForm != null)
-            {
-                poukazForm.ShowDialog(this);
-            }
-            else
-            {
+            //if (poukazForm != null)
+            //{
+            //    poukazForm.Clear();
+            //    poukazForm.ShowDialog(this);
+            //}
+            //else
+            //{
                 poukazForm = new PoukazForm();
                 poukazForm.Initiate(_fc, _lc, _pc, _opt, _fIndex, _diagnozy);
                 poukazForm.ShowDialog(this);
-            }
+            //}
         }
 
         private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
         {
             Poukaz p = _fc.Faktury[_fIndex].Poukazy[e.ItemIndex];
-            string[] item = { (e.ItemIndex + 1).ToString(), p.RodneCislo, p.Pobocka.ToString(), p.Lekar.Kod, p.Lekar.Kpzs, p.Diagnoza, p.DatumPredpisania, p.DatumVydaja, "0", "0" };
+            string[] item = { (e.ItemIndex + 1).ToString(), p.RodneCislo, p.Pobocka.ToString(), p.Lekar.Kod, p.Lekar.Kpzs, p.Diagnoza, p.DatumPredpisania, p.DatumVydaja, p.HradiPoistovna.ToString(), p.HradiPacient.ToString() };
             ListViewItem lvi = new ListViewItem(item);
             e.Item = lvi;
         }
@@ -129,6 +130,12 @@ namespace Optoset
             if (listView1.SelectedIndices.Count == 0)
             {
                 MessageBox.Show("Musíte zvoliť poukaz, ku ktorému chcete pridať poôcku.");
+                return;
+            }
+
+            if (_fc.Faktury[_fIndex].Poukazy[listView1.SelectedIndices[0]].Pomocky.Count == Settings.MaxPocetPomocok)
+            {
+                MessageBox.Show("Maximálny počet pomôcok pre poukaz je " + Settings.MaxPocetPomocok + ".");
                 return;
             }
             pomockaForm = new PomockaForm();
@@ -191,6 +198,8 @@ namespace Optoset
             {
                 _fc.Faktury[_fIndex].Poukazy[listView1.SelectedIndices[0]].Pomocky.RemoveAt(listView2.SelectedIndices[0]);
                 listView2.Items.RemoveAt(listView2.SelectedIndices[0]);
+                _fc.Faktury[_fIndex].PrepocitajCeny(listView1.SelectedIndices[0]);
+                listView1.Invalidate();
             }
         }
     }

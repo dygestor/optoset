@@ -29,5 +29,20 @@ namespace Optoset
         {
             return !Cislo.Equals("") && !Poistovna.Equals("") && !Obdobie.Equals("") && !Cennik.Equals("");
         }
+
+        public void PrepocitajCeny(int poukazIndex)
+        {
+            double hradiPoistovna = 0, hradiPacient = 0;
+
+            foreach (var pomocka in Poukazy[poukazIndex].Pomocky)
+            {
+                hradiPoistovna += pomocka.HradiPoistovna;
+                hradiPacient += pomocka.HradiPacient;
+            }
+
+            Poukazy[poukazIndex].HradiPoistovna = hradiPoistovna;
+            Poukazy[poukazIndex].HradiPacient = hradiPacient;
+            TabControl.LV1.Invalidate();
+        }
     }
 }

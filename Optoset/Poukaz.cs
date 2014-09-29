@@ -15,6 +15,8 @@ namespace Optoset
         public string Diagnoza;
         public string DatumPredpisania;
         public string DatumVydaja;
+        public double HradiPoistovna = 0;
+        public double HradiPacient = 0;
 
         public List<PoukazPomocka> Pomocky;
 

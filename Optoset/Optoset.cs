@@ -154,6 +154,12 @@ namespace Optoset
             cnt.Dock = DockStyle.Fill;
             nTab.Controls.Add(cnt);
             _fc.Faktury.Last().TabControl = cnt;
+            ulozitFakturuToolStripMenuItem.Enabled = true;
+        }
+
+        private void ulozitFakturuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _fc.UlozFakturu(tabControl1.SelectedIndex);
         }
     }
 }

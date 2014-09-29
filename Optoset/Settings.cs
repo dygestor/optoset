@@ -12,6 +12,7 @@ namespace Optoset
     {
         private const string nastaveniaFileName = "nastavenia.xml";
         public static string Nazov = "", Ico = "", Dic = "", Icdph = "", Adresa = "", Iban = "", Bic = "", Register = "", Ustav = "", KodPoskytovatela = "", RegistracnyKod = "", SadzbaDPHvyssia = "", SadzbaDPHnizsia = "";
+        public const int MaxPocetPomocok = 4;
 
         public static bool JePlatca()
         {

@@ -155,6 +155,7 @@ namespace Optoset
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete) return;
             if (textBox1.Text.Length == 6)
             {
                 textBox1.Text += "/";

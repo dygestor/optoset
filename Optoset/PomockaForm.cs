@@ -146,6 +146,7 @@ namespace Optoset
                 _faktura.TabControl.LV2.Items.Add(lvi);
                 _faktura.TabControl.LV2.Items[_faktura.TabControl.LV2.Items.Count - 1].Selected = true;
             }
+            _faktura.PrepocitajCeny(_poukazIndex);
             Close();
         }
     }
