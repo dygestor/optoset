@@ -120,6 +120,77 @@ namespace Optoset
             writer.WriteEndDocument();
             writer.Flush();
             writer.Close();
+
+            MessageBox.Show("Faktúra bola úspešne uložená.");
+        }
+
+        public bool NacitajFakturu(string fileName, PobockyController pc, LekariController lc)
+        {
+            var file = new XmlDocument();
+            file.Load(fileName);
+
+            var fakturaNodes = file.GetElementsByTagName("faktura");
+            var error = false;
+            if (fakturaNodes.Count > 0)
+            {
+                var faktura = fakturaNodes[0];
+                Faktura f = new Faktura();
+
+                if (faktura.Attributes != null)
+                {
+                    f.Cislo = faktura.Attributes["cislo"].InnerText;
+                    f.Poistovna = faktura.Attributes["poistovna"].InnerText;
+                    f.Obdobie = faktura.Attributes["obdobie"].InnerText;
+                    f.Cennik = faktura.Attributes["cennik"].InnerText;
+                }
+
+                PomockyController pomc = new PomockyController();
+                if (!pomc.NacitajCennik(f.Cennik))
+                {
+                    return false;
+                }
+
+                var poukazyNodes = faktura.SelectNodes("poukaz");
+                foreach (XmlNode poukaz in poukazyNodes)
+                {
+                    Poukaz p = new Poukaz();
+                    p.Pobocka = pc.Pobocky.Find(x => x.Cislo.Equals(poukaz.Attributes["pobocka"].InnerText));
+                    p.RodneCislo = poukaz.Attributes["rodneCislo"].InnerText;
+                    p.Lekar =
+                        lc.Lekari.Find(
+                            x =>
+                                x.Kod.Equals(poukaz.Attributes["lekarKod"].InnerText) &&
+                                x.Kpzs.Equals(poukaz.Attributes["lekarKpzs"].InnerText));
+                    p.Diagnoza = poukaz.Attributes["diagnoza"].InnerText;
+                    p.DatumPredpisania = poukaz.Attributes["datumPredpisania"].InnerText;
+                    p.DatumVydaja = poukaz.Attributes["datumVydaja"].InnerText;
+
+                    var pomockyNodes = poukaz.SelectNodes("pomocka");
+                    foreach (XmlNode pomocka in pomockyNodes)
+                    {
+                        PoukazPomocka pom = new PoukazPomocka();
+                        pom.Pomocka = pomc.Pomocky.Find(x => x.Kod.Equals(pomocka.Attributes["kod"].InnerText));
+                        pom.Mnozstvo = int.Parse(pomocka.Attributes["mnozstvo"].InnerText);
+                        pom.HradiPoistovna = double.Parse(pomocka.Attributes["hradiPoistovna"].InnerText);
+                        pom.HradiPacient = double.Parse(pomocka.Attributes["hradiPacient"].InnerText);
+
+                        p.Pomocky.Add(pom);
+                    }
+                    f.Poukazy.Add(p);
+                }
+                Faktury.Add(f);
+            }
+            else
+            {
+                error = true;
+            }
+
+            if (error)
+            {
+                MessageBox.Show("Súbor je v nesprávnom formáte");
+                return false;
+            }
+            return true;
         }
     }
 }

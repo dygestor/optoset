@@ -35,6 +35,7 @@ namespace Optoset
         private List<Tuple<string, string>> _diagnozy;
 
         private const string diagnozyFileName = "diagnozy.csv";
+        private const string mesiaceDirectory = "\\data\\mesiace";
 
         public System.Windows.Forms.TabControl TabControl
         {
@@ -52,6 +53,8 @@ namespace Optoset
             _fc = new FakturyController();
 
             new Thread(new ThreadStart(Run)).Start();
+
+            Directory.CreateDirectory(Directory.GetCurrentDirectory() + mesiaceDirectory);
         }
 
         private void Run()
@@ -160,6 +163,30 @@ namespace Optoset
         private void ulozitFakturuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _fc.UlozFakturu(tabControl1.SelectedIndex);
+        }
+
+        private void otvoritMesiacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory() + mesiaceDirectory;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (!_fc.NacitajFakturu(openFileDialog1.FileName, _pc, _lc))
+                {
+                    MessageBox.Show("Pri otváraní faktúry došlo k chybe");
+                }
+                else
+                {
+                    PridajTab();
+                    var faktura = _fc.Faktury.Last();
+                    faktura.TabControl.LV1.VirtualListSize = faktura.Poukazy.Count;
+
+                    for (int i = 0; i < faktura.Poukazy.Count; i++)
+                    {
+                        faktura.PrepocitajCeny(i, false);   
+                    }
+                    faktura.TabControl.LV1.Invalidate();
+                }
+            }
         }
     }
 }

@@ -18,7 +18,12 @@ namespace Optoset
         public double HradiPoistovna = 0;
         public double HradiPacient = 0;
 
-        public List<PoukazPomocka> Pomocky;
+        public List<PoukazPomocka> Pomocky = new List<PoukazPomocka>();
+
+        public Poukaz()
+        {
+
+        }
 
         public Poukaz(Pobocka pobocka, string rodneCislo, Lekar lekar, string diagnoza, string datumPredpisania, string datumVydaja)
         {
@@ -28,8 +33,6 @@ namespace Optoset
             Diagnoza = diagnoza;
             DatumPredpisania = datumPredpisania;
             DatumVydaja = datumVydaja;
-
-            Pomocky = new List<PoukazPomocka>();
         }
 
         public bool Validate()

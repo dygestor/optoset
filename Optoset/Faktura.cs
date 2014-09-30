@@ -12,8 +12,12 @@ namespace Optoset
         public string Poistovna;
         public string Obdobie;
         public string Cennik;
-        public List<Poukaz> Poukazy;
+        public List<Poukaz> Poukazy = new List<Poukaz>();
         public TabControl TabControl;
+
+        public Faktura()
+        {
+        }
 
         public Faktura(string cislo, string poistovna, string obdobie, string cennik)
         {
@@ -21,8 +25,6 @@ namespace Optoset
             Poistovna = poistovna;
             Obdobie = obdobie;
             Cennik = cennik;
-
-            Poukazy = new List<Poukaz>();
         }
 
         public bool Validates()
@@ -30,7 +32,7 @@ namespace Optoset
             return !Cislo.Equals("") && !Poistovna.Equals("") && !Obdobie.Equals("") && !Cennik.Equals("");
         }
 
-        public void PrepocitajCeny(int poukazIndex)
+        public void PrepocitajCeny(int poukazIndex, bool invalidate = true)
         {
             double hradiPoistovna = 0, hradiPacient = 0;
 
@@ -42,7 +44,7 @@ namespace Optoset
 
             Poukazy[poukazIndex].HradiPoistovna = hradiPoistovna;
             Poukazy[poukazIndex].HradiPacient = hradiPacient;
-            TabControl.LV1.Invalidate();
+            if (invalidate) TabControl.LV1.Invalidate();
         }
     }
 }

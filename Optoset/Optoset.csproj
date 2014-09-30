@@ -111,6 +111,7 @@
     <Compile Include="PomockaForm.Designer.cs">
       <DependentUpon>PomockaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PomockyController.cs" />
     <Compile Include="Poukaz.cs" />
     <Compile Include="PoukazForm.cs">
       <SubType>Form</SubType>

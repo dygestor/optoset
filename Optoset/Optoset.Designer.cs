@@ -53,6 +53,7 @@ namespace Optoset
             this.oAplikaciiOptosetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +96,7 @@ namespace Optoset
             this.otvoritMesiacToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.otvoritMesiacToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.otvoritMesiacToolStripMenuItem.Text = "Otvoriť mesiac";
+            this.otvoritMesiacToolStripMenuItem.Click += new System.EventHandler(this.otvoritMesiacToolStripMenuItem_Click);
             // 
             // ulozitFakturuToolStripMenuItem
             // 
@@ -207,6 +209,10 @@ namespace Optoset
             this.tabControl1.Size = new System.Drawing.Size(1250, 604);
             this.tabControl1.TabIndex = 4;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "XML Files | *.xml";
+            // 
             // Optoset
             // 
             this.ClientSize = new System.Drawing.Size(1250, 628);
@@ -246,6 +252,7 @@ namespace Optoset
         private BackgroundWorker backgroundWorker1;
         private ToolStripMenuItem ulozitFakturuToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator4;
+        private OpenFileDialog openFileDialog1;
     }
 }
 
