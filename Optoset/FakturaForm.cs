@@ -48,6 +48,19 @@ namespace Optoset
                 foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory() + "\\data\\" + cennikyDirectory))
                 {
                     var name = Path.GetFileNameWithoutExtension(file);
+                    
+                    //using (FileStream fs = File.Open(Directory.GetCurrentDirectory() + "\\data\\" + cennikyDirectory + "\\" + name + ".csv", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    //using (BufferedStream bs = new BufferedStream(fs))
+                    //using (StreamReader sr = new StreamReader(bs))
+                    //{
+                    //    string line;
+                    //    if ((line = sr.ReadLine()) != null)
+                    //    {
+                    //        string[] datumy = line.Split('|');
+                    //        name += string.Format(" ({0} - {1})", datumy[0], datumy[1]);
+                    //    }
+                    //}
+
                     comboBox2.Items.Add(name);
                 }
             }
@@ -79,7 +92,18 @@ namespace Optoset
         {
             if (_fIndex > -1)
             {
-                if (_fc.UpravFakturu(_fIndex, textBox1.Text, comboBox1.Text, dateTimePicker1.Text, comboBox2.Text))
+                bool prepocitaj = false;
+                if (!comboBox2.Text.Equals(_fc.Faktury[_fIndex].Cennik))
+                { 
+                    DialogResult dr = MessageBox.Show("Cena pomôcok bude prepočítaná podľa zvoleného cenníka. Chcete pokračovať?", "Zmena cenníka", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+                    prepocitaj = true;
+                }
+
+                if (_fc.UpravFakturu(_fIndex, textBox1.Text, comboBox1.Text, dateTimePicker1.Text, comboBox2.Text, prepocitaj))
                 {
                     Close();
                 }

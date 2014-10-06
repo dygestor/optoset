@@ -156,6 +156,10 @@ namespace Optoset
                         p.HradiPoistovna.ToString(), p.HradiPacient.ToString()
                     };
                     ListViewItem lvi = new ListViewItem(item);
+                    if (p.Error) 
+                    {
+                        lvi.ForeColor = Color.Red;
+                    }
                     _fc.Faktury[_fIndex].TabControl.LV2.Items.Add(lvi);
                 }
             }

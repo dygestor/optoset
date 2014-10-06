@@ -47,7 +47,7 @@ namespace Optoset
             return false;
         }
 
-        public bool UpravFakturu(int index, string cislo, string poistovna, string obdobie, string cennik)
+        public bool UpravFakturu(int index, string cislo, string poistovna, string obdobie, string cennik, bool prepocitaj)
         {
             Faktura f = new Faktura(cislo, poistovna, obdobie, cennik);
             if (f.Validates())
@@ -60,6 +60,11 @@ namespace Optoset
                     Faktury[index].Obdobie = obdobie;
                     Faktury[index].Cennik = cennik;
                     Kluce.Add(cislo);
+
+                    if (prepocitaj) 
+                    {
+                        Faktury[index].PrepocitajFakturu();
+                    }
                     return true;
                 }
                 MessageBox.Show("Faktúra s daným číslom už existuje.");
