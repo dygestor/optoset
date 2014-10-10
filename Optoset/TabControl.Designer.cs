@@ -56,6 +56,7 @@
             this.zmazaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nastaveniaFakturyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -164,7 +165,8 @@
             this.columnHeader12,
             this.columnHeader13,
             this.columnHeader14,
-            this.columnHeader15});
+            this.columnHeader15,
+            this.columnHeader1});
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
@@ -282,6 +284,9 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Dodatočné informácie";
             // 
             // TabControl
             // 
@@ -331,5 +336,6 @@
         private System.Windows.Forms.ToolStripMenuItem zmazaťPomôckuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nastaveniaFakturyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

@@ -185,6 +185,11 @@ namespace Optoset
                         faktura.PrepocitajCeny(i, false);   
                     }
                     faktura.TabControl.LV1.Invalidate();
+
+                    if (faktura.TabControl.LV1.Items.Count > 0) 
+                    {
+                        faktura.TabControl.LV1.Items[0].Selected = true;
+                    }
                 }
             }
         }

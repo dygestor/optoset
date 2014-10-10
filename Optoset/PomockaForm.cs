@@ -57,6 +57,10 @@ namespace Optoset
             using (StreamReader sr = new StreamReader(bs))
             {
                 string line;
+                if ((line = sr.ReadLine()) != null)
+                {
+
+                }
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] row = line.Split('|');

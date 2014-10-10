@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,7 @@ namespace Optoset
             return false;
         }
 
-        public bool UpravFakturu(int index, string cislo, string poistovna, string obdobie, string cennik)
+        public bool UpravFakturu(int index, string cislo, string poistovna, string obdobie, string cennik, bool prepocitaj)
         {
             Faktura f = new Faktura(cislo, poistovna, obdobie, cennik);
             if (f.Validates())
@@ -60,6 +61,11 @@ namespace Optoset
                     Faktury[index].Obdobie = obdobie;
                     Faktury[index].Cennik = cennik;
                     Kluce.Add(cislo);
+
+                    if (prepocitaj) 
+                    {
+                        Faktury[index].PrepocitajFakturu();
+                    }
                     return true;
                 }
                 MessageBox.Show("Faktúra s daným číslom už existuje.");
@@ -171,8 +177,8 @@ namespace Optoset
                         PoukazPomocka pom = new PoukazPomocka();
                         pom.Pomocka = pomc.Pomocky.Find(x => x.Kod.Equals(pomocka.Attributes["kod"].InnerText));
                         pom.Mnozstvo = int.Parse(pomocka.Attributes["mnozstvo"].InnerText);
-                        pom.HradiPoistovna = double.Parse(pomocka.Attributes["hradiPoistovna"].InnerText);
-                        pom.HradiPacient = double.Parse(pomocka.Attributes["hradiPacient"].InnerText);
+                        pom.HradiPoistovna = double.Parse(pomocka.Attributes["hradiPoistovna"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
+                        pom.HradiPacient = double.Parse(pomocka.Attributes["hradiPacient"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
 
                         p.Pomocky.Add(pom);
                     }
