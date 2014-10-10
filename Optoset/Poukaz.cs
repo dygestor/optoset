@@ -17,6 +17,7 @@ namespace Optoset
         public string DatumVydaja;
         public double HradiPoistovna = 0;
         public double HradiPacient = 0;
+        public bool Error = false;
 
         public List<PoukazPomocka> Pomocky = new List<PoukazPomocka>();
 

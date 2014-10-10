@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -176,8 +177,8 @@ namespace Optoset
                         PoukazPomocka pom = new PoukazPomocka();
                         pom.Pomocka = pomc.Pomocky.Find(x => x.Kod.Equals(pomocka.Attributes["kod"].InnerText));
                         pom.Mnozstvo = int.Parse(pomocka.Attributes["mnozstvo"].InnerText);
-                        pom.HradiPoistovna = double.Parse(pomocka.Attributes["hradiPoistovna"].InnerText);
-                        pom.HradiPacient = double.Parse(pomocka.Attributes["hradiPacient"].InnerText);
+                        pom.HradiPoistovna = double.Parse(pomocka.Attributes["hradiPoistovna"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
+                        pom.HradiPacient = double.Parse(pomocka.Attributes["hradiPacient"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
 
                         p.Pomocky.Add(pom);
                     }

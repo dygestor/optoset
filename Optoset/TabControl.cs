@@ -77,6 +77,7 @@ namespace Optoset
             Poukaz p = _fc.Faktury[_fIndex].Poukazy[e.ItemIndex];
             string[] item = { (e.ItemIndex + 1).ToString(), p.RodneCislo, p.Pobocka.ToString(), p.Lekar.Kod, p.Lekar.Kpzs, p.Diagnoza, p.DatumPredpisania, p.DatumVydaja, p.HradiPoistovna.ToString(), p.HradiPacient.ToString() };
             ListViewItem lvi = new ListViewItem(item);
+            if (p.Error) lvi.ForeColor = Color.Red;
             e.Item = lvi;
         }
 
@@ -153,13 +154,10 @@ namespace Optoset
                     string[] item =
                     {
                         p.Pomocka.Kod + " " + p.Pomocka.Nazov + " (" + p.Pomocka.Popis + ")", p.Mnozstvo.ToString(),
-                        p.HradiPoistovna.ToString(), p.HradiPacient.ToString()
+                        p.HradiPoistovna.ToString(), p.HradiPacient.ToString(), p.ErrorString
                     };
                     ListViewItem lvi = new ListViewItem(item);
-                    if (p.Error) 
-                    {
-                        lvi.ForeColor = Color.Red;
-                    }
+                    if (p.Error) lvi.ForeColor = Color.Red;
                     _fc.Faktury[_fIndex].TabControl.LV2.Items.Add(lvi);
                 }
             }

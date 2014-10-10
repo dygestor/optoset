@@ -3,7 +3,7 @@
 <faktura cislo="12345" poistovna="45" obdobie="2014.09" cennik="73">
   <poukaz pobocka="4501" rodneCislo="910506/6344" lekarKod="A00000000" lekarKpzs="A12345678900" diagnoza="A01.0 Brusny tyfus" datumPredpisania="30.9.2014" datumVydaja="1.10.2014">
     <pomocka kod="56530" mnozstvo="2" hradiPoistovna="9,08" hradiPacient="0" />
-    <pomocka kod="56527" mnozstvo="1" hradiPoistovna="26,91" hradiPacient="18,48" />
+    <pomocka kod="56527" mnozstvo="1" hradiPoistovna="26,91" hradiPacient="0" />
   </poukaz>
   <poukaz pobocka="4521" rodneCislo="123456/7890" lekarKod="A00000000" lekarKpzs="A12345678900" diagnoza="A02.8 Ina salmonelova infekcia, blizsie urcena" datumPredpisania="30.9.2014" datumVydaja="30.9.2014">
     <pomocka kod="56530" mnozstvo="1" hradiPoistovna="4,54" hradiPacient="0" />

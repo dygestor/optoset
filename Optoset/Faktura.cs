@@ -74,6 +74,7 @@ namespace Optoset
 
             foreach (var poukaz in Poukazy) 
             {
+                poukaz.Error = false;
                 for (int i = 0; i < poukaz.Pomocky.Count; i++) 
                 {
                     var p = poukaz.Pomocky[i];
@@ -83,6 +84,7 @@ namespace Optoset
                     if (pomocka != null)
                     {
                         p.Error = false;
+                        p.ErrorString = "";
                         p.Pomocka = pomocka;
                         p.PrepocitajCeny();
                     }
@@ -90,9 +92,19 @@ namespace Optoset
                     {
                         p.Error = true;
                         p.ErrorString = string.Format("Pomôcka neexistuje v cenníku {0}.", Cennik);
+                        poukaz.Error = true;
                     }
                 }   
-            }    
+            }
+
+            var selected = TabControl.LV1.SelectedIndices[0];
+            TabControl.LV1.Invalidate();
+
+            if (selected > -1)
+            {
+                TabControl.LV1.Items[selected].Selected = false;
+                TabControl.LV1.Items[selected].Selected = true;
+            }
         }
     }
 }
