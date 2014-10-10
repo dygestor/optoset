@@ -117,6 +117,7 @@ namespace Optoset
             this.ukoncitToolStripMenuItem.Name = "ukoncitToolStripMenuItem";
             this.ukoncitToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.ukoncitToolStripMenuItem.Text = "Ukončiť";
+            this.ukoncitToolStripMenuItem.Click += new System.EventHandler(this.ukoncitToolStripMenuItem_Click);
             // 
             // zobrazToolStripMenuItem
             // 

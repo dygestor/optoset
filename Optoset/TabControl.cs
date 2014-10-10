@@ -129,7 +129,7 @@ namespace Optoset
         {
             if (listView1.SelectedIndices.Count == 0)
             {
-                MessageBox.Show("Musíte zvoliť poukaz, ku ktorému chcete pridať poôcku.");
+                MessageBox.Show("Musíte zvoliť poukaz, ku ktorému chcete pridať pomôcku.");
                 return;
             }
 

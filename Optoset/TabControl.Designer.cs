@@ -50,10 +50,12 @@
             this.upraviťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zmazaťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.upraviťToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pridaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.upraviťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.zmazaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nastaveniaFakturyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -229,7 +231,7 @@
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.upraviťToolStripMenuItem,
+            this.fakturaToolStripMenuItem,
             this.pridaťPoukazToolStripMenuItem1,
             this.upraviťPoukazToolStripMenuItem1,
             this.zmazaťPoukazToolStripMenuItem1});
@@ -239,12 +241,14 @@
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
             // 
-            // upraviťToolStripMenuItem
+            // fakturaToolStripMenuItem
             // 
-            this.upraviťToolStripMenuItem.Name = "upraviťToolStripMenuItem";
-            this.upraviťToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
-            this.upraviťToolStripMenuItem.Text = "Nastavenia faktúry";
-            this.upraviťToolStripMenuItem.Click += new System.EventHandler(this.upraviťToolStripMenuItem_Click);
+            this.fakturaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nastaveniaFakturyToolStripMenuItem,
+            this.toolStripSeparator1});
+            this.fakturaToolStripMenuItem.Name = "fakturaToolStripMenuItem";
+            this.fakturaToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.fakturaToolStripMenuItem.Text = "Faktúra";
             // 
             // pridaťPoukazToolStripMenuItem1
             // 
@@ -266,6 +270,18 @@
             this.zmazaťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(100, 20);
             this.zmazaťPoukazToolStripMenuItem1.Text = "Zmazať poukaz";
             this.zmazaťPoukazToolStripMenuItem1.Click += new System.EventHandler(this.zmazaťPoukazToolStripMenuItem1_Click);
+            // 
+            // nastaveniaFakturyToolStripMenuItem
+            // 
+            this.nastaveniaFakturyToolStripMenuItem.Name = "nastaveniaFakturyToolStripMenuItem";
+            this.nastaveniaFakturyToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.nastaveniaFakturyToolStripMenuItem.Text = "Nastavenia faktúry";
+            this.nastaveniaFakturyToolStripMenuItem.Click += new System.EventHandler(this.upraviťToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
             // 
             // TabControl
             // 
@@ -305,7 +321,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem upraviťToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fakturaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pridaťPoukazToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem upraviťPoukazToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem zmazaťPoukazToolStripMenuItem1;
@@ -313,5 +329,7 @@
         private System.Windows.Forms.ToolStripMenuItem pridaťPomôckuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem upraviťPomôckuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zmazaťPomôckuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nastaveniaFakturyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
