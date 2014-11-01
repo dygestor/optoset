@@ -193,5 +193,10 @@ namespace Optoset
                 }
             }
         }
+
+        private void ukoncitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
