@@ -230,6 +230,7 @@
             this.Name = "PoukazForm";
             this.Text = "Nastavenia poukazu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PoukazForm_FormClosing);
+            this.Shown += new System.EventHandler(this.PoukazForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

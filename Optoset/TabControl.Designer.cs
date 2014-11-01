@@ -45,16 +45,21 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pridaťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upraviťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zmazaťPomôckuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.fakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.exportovaťDávkuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upraviťToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pridaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.upraviťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.zmazaťPoukazToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tlacitFakturuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.poukazyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pridaťPoukazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upraviťPoukazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zmazaťPoukazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -195,6 +200,10 @@
             this.columnHeader15.Text = "Hradí pacient";
             this.columnHeader15.Width = 100;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Dodatočné informácie";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -231,47 +240,79 @@
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.upraviťToolStripMenuItem,
-            this.pridaťPoukazToolStripMenuItem1,
-            this.upraviťPoukazToolStripMenuItem1,
-            this.zmazaťPoukazToolStripMenuItem1});
+            this.fakturaToolStripMenuItem,
+            this.poukazyToolStripMenuItem,
+            this.exportovaťDávkuToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(600, 24);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
             // 
+            // fakturaToolStripMenuItem
+            // 
+            this.fakturaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.upraviťToolStripMenuItem,
+            this.tlacitFakturuToolStripMenuItem});
+            this.fakturaToolStripMenuItem.Name = "fakturaToolStripMenuItem";
+            this.fakturaToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.fakturaToolStripMenuItem.Text = "Faktúra";
+            // 
+            // printDialog
+            // 
+            this.printDialog.UseEXDialog = true;
+            // 
+            // exportovaťDávkuToolStripMenuItem
+            // 
+            this.exportovaťDávkuToolStripMenuItem.Name = "exportovaťDávkuToolStripMenuItem";
+            this.exportovaťDávkuToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
+            this.exportovaťDávkuToolStripMenuItem.Text = "Exportovať dávku";
+            this.exportovaťDávkuToolStripMenuItem.Click += new System.EventHandler(this.exportovaťDávkuToolStripMenuItem_Click);
+            // 
             // upraviťToolStripMenuItem
             // 
             this.upraviťToolStripMenuItem.Name = "upraviťToolStripMenuItem";
-            this.upraviťToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.upraviťToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.upraviťToolStripMenuItem.Text = "Nastavenia faktúry";
             this.upraviťToolStripMenuItem.Click += new System.EventHandler(this.upraviťToolStripMenuItem_Click);
             // 
-            // pridaťPoukazToolStripMenuItem1
+            // tlacitFakturuToolStripMenuItem
             // 
-            this.pridaťPoukazToolStripMenuItem1.Name = "pridaťPoukazToolStripMenuItem1";
-            this.pridaťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(92, 20);
-            this.pridaťPoukazToolStripMenuItem1.Text = "Pridať poukaz";
-            this.pridaťPoukazToolStripMenuItem1.Click += new System.EventHandler(this.pridaťPoukazToolStripMenuItem1_Click);
+            this.tlacitFakturuToolStripMenuItem.Name = "tlacitFakturuToolStripMenuItem";
+            this.tlacitFakturuToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.tlacitFakturuToolStripMenuItem.Text = "Tlačiť faktúru";
+            this.tlacitFakturuToolStripMenuItem.Click += new System.EventHandler(this.tlacitFakturuToolStripMenuItem_Click);
             // 
-            // upraviťPoukazToolStripMenuItem1
+            // poukazyToolStripMenuItem
             // 
-            this.upraviťPoukazToolStripMenuItem1.Name = "upraviťPoukazToolStripMenuItem1";
-            this.upraviťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(99, 20);
-            this.upraviťPoukazToolStripMenuItem1.Text = "Upraviť poukaz";
-            this.upraviťPoukazToolStripMenuItem1.Click += new System.EventHandler(this.upraviťPoukazToolStripMenuItem1_Click);
+            this.poukazyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pridaťPoukazToolStripMenuItem,
+            this.upraviťPoukazToolStripMenuItem,
+            this.zmazaťPoukazToolStripMenuItem});
+            this.poukazyToolStripMenuItem.Name = "poukazyToolStripMenuItem";
+            this.poukazyToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.poukazyToolStripMenuItem.Text = "Poukazy";
             // 
-            // zmazaťPoukazToolStripMenuItem1
+            // pridaťPoukazToolStripMenuItem
             // 
-            this.zmazaťPoukazToolStripMenuItem1.Name = "zmazaťPoukazToolStripMenuItem1";
-            this.zmazaťPoukazToolStripMenuItem1.Size = new System.Drawing.Size(100, 20);
-            this.zmazaťPoukazToolStripMenuItem1.Text = "Zmazať poukaz";
-            this.zmazaťPoukazToolStripMenuItem1.Click += new System.EventHandler(this.zmazaťPoukazToolStripMenuItem1_Click);
+            this.pridaťPoukazToolStripMenuItem.Name = "pridaťPoukazToolStripMenuItem";
+            this.pridaťPoukazToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.pridaťPoukazToolStripMenuItem.Text = "Pridať poukaz";
+            this.pridaťPoukazToolStripMenuItem.Click += new System.EventHandler(this.pridaťPoukazToolStripMenuItem1_Click);
             // 
-            // columnHeader1
+            // upraviťPoukazToolStripMenuItem
             // 
-            this.columnHeader1.Text = "Dodatočné informácie";
+            this.upraviťPoukazToolStripMenuItem.Name = "upraviťPoukazToolStripMenuItem";
+            this.upraviťPoukazToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.upraviťPoukazToolStripMenuItem.Text = "Upraviť poukaz";
+            this.upraviťPoukazToolStripMenuItem.Click += new System.EventHandler(this.upraviťPoukazToolStripMenuItem1_Click);
+            // 
+            // zmazaťPoukazToolStripMenuItem
+            // 
+            this.zmazaťPoukazToolStripMenuItem.Name = "zmazaťPoukazToolStripMenuItem";
+            this.zmazaťPoukazToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.zmazaťPoukazToolStripMenuItem.Text = "Zmazať poukaz";
+            this.zmazaťPoukazToolStripMenuItem.Click += new System.EventHandler(this.zmazaťPoukazToolStripMenuItem1_Click);
             // 
             // TabControl
             // 
@@ -311,14 +352,19 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem upraviťToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pridaťPoukazToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem upraviťPoukazToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem zmazaťPoukazToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem fakturaToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pridaťPomôckuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem upraviťPomôckuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zmazaťPomôckuToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.PrintDialog printDialog;
+        private System.Windows.Forms.ToolStripMenuItem upraviťToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportovaťDávkuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tlacitFakturuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem poukazyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pridaťPoukazToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem upraviťPoukazToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zmazaťPoukazToolStripMenuItem;
     }
 }

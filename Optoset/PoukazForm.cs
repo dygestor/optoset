@@ -22,7 +22,8 @@ namespace Optoset
 
         private List<Tuple<string, string>> _diagnozy;
 
-        
+        private bool _isInitialized = false;
+        private Task<AutoCompleteStringCollection> _asc;
 
         public PoukazForm()
         {
@@ -44,6 +45,7 @@ namespace Optoset
             _opt = opt;
             _fIndex = fIndex;
             _pIndex = pIndex;
+            _diagnozy = diagnozy;
 
             comboBox1.Items.Clear();
             comboBox1.AutoCompleteCustomSource = new AutoCompleteStringCollection();
@@ -63,16 +65,6 @@ namespace Optoset
                 comboBox2.Items.Add(l.Priezvisko + " " + l.Meno + " " + l.Titul);
                 comboBox2.AutoCompleteCustomSource.Add(l.Priezvisko + " " + l.Meno + " " + l.Titul);
             }
-            
-            comboBox3.Items.Clear();
-            comboBox3.AutoCompleteCustomSource = new AutoCompleteStringCollection();
-            comboBox3.BeginUpdate();
-            foreach (var d in diagnozy)
-            {
-                comboBox3.Items.Add(d.Item1 + " " + d.Item2);
-                comboBox3.AutoCompleteCustomSource.Add(d.Item1 + " " + d.Item2);
-            }
-            comboBox3.EndUpdate();
 
             if (pIndex > -1)
             {
@@ -161,6 +153,46 @@ namespace Optoset
                 textBox1.Text += "/";
                 textBox1.Select(textBox1.Text.Length, 0);
             }
+        }
+
+        private void PoukazForm_Shown(object sender, EventArgs e)
+        {
+            if (!_isInitialized)
+            {
+                ThreadPool.QueueUserWorkItem(state =>
+                {
+                    Thread.Sleep(200); // brief sleep to allow the main thread
+                    // to paint the form nicely
+                    this.Invoke((Action)delegate { LoadData(); });
+                });
+            }
+        }
+
+        private async void LoadData() 
+        {
+            comboBox3.Items.Clear();
+            //comboBox3.AutoCompleteCustomSource = new AutoCompleteStringCollection();
+            Task<AutoCompleteStringCollection> _asc = NacitajAutoComplete();
+            comboBox3.BeginUpdate();
+            foreach (var d in _diagnozy)
+            {
+                comboBox3.Items.Add(d.Item1 + " " + d.Item2);
+                //comboBox3.AutoCompleteCustomSource.Add(d.Item1 + " " + d.Item2);
+            }
+            comboBox3.EndUpdate();
+
+            comboBox3.AutoCompleteCustomSource = await _asc;
+            _isInitialized = true;   
+        }
+
+        private async Task<AutoCompleteStringCollection> NacitajAutoComplete()
+        {
+            var sc = new AutoCompleteStringCollection();
+            foreach (var d in _diagnozy)
+            { 
+                sc.Add(d.Item1 + " " + d.Item2);
+            }
+            return sc;
         }
     }
 }

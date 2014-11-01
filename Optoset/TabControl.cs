@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
+using System.IO;
+using System.Globalization;
 
 namespace Optoset
 {
@@ -21,6 +24,7 @@ namespace Optoset
         private List<Tuple<string, string>> _diagnozy;
         private PoukazForm poukazForm;
         private PomockaForm pomockaForm;
+        private StreamReader stream;
 
         public TabControl()
         {
@@ -202,6 +206,107 @@ namespace Optoset
                 listView2.Items.RemoveAt(listView2.SelectedIndices[0]);
                 _fc.Faktury[_fIndex].PrepocitajCeny(listView1.SelectedIndices[0]);
                 listView1.Invalidate();
+            }
+        }
+
+        private void tlacitFakturuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    stream = new StreamReader(Directory.GetCurrentDirectory() + "\\data\\diagnozy.csv");
+                    if (printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        var pd = new PrintDocument();
+                        pd.PrinterSettings = printDialog.PrinterSettings;
+                        pd.PrintPage += pd_PrintPage;
+                        pd.Print();
+                    }
+                }
+                finally {
+                    stream.Close();
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void pd_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            float linesPerPage = 0;
+            float yPos = 0;
+            int count = 0;
+            float leftMargin = e.MarginBounds.Left;
+            float topMargin = e.MarginBounds.Top;
+            string line = null;
+
+            var printFont = new Font("Arial", 10);
+
+            // Calculate the number of lines per page.
+            linesPerPage = e.MarginBounds.Height /
+               printFont.GetHeight(e.Graphics);
+
+            // Print each line of the file. 
+            while (count < linesPerPage && ((line = stream.ReadLine()) != null))
+            {
+                yPos = topMargin + (count *
+                   printFont.GetHeight(e.Graphics));
+                e.Graphics.DrawString(line, printFont, Brushes.Black,
+                   leftMargin, yPos, new StringFormat());
+                count++;
+            }
+
+            // If more lines exist, print another page. 
+            if (line != null)
+                e.HasMorePages = true;
+            else
+                e.HasMorePages = false;
+        }
+
+        private void exportovaťDávkuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                var pocetPomocok = 0;
+                foreach (var poukaz in _fc.Faktury[_fIndex].Poukazy)
+                {
+                    pocetPomocok += poukaz.Pomocky.Count;
+                }
+
+                var csv = new StringBuilder();
+                csv.Append(string.Format("N|738|{0}|{1}|000001|{2}|001|001|{3}|{4}", Settings.Ico, DateTime.Now.ToString("yyyyMMdd"), pocetPomocok.ToString("D6"), _fc.Faktury[_fIndex].Poistovna, Environment.NewLine));
+                csv.Append(string.Format("{0}|{1}|{2}|{3}|EUR|{4}", _fc.Faktury[_fIndex].Cislo, _fc.Faktury[_fIndex].Obdobie, Settings.KodPoskytovatela.Substring(0, 6), Settings.KodPoskytovatela, Environment.NewLine));
+
+                int i = 1;
+                foreach (var p in _fc.Faktury[_fIndex].Poukazy)
+                {
+                    DateTime predpisanie = DateTime.ParseExact(p.DatumPredpisania, "d.M.yyyy", CultureInfo.InvariantCulture);
+                    DateTime vydanie = DateTime.ParseExact(p.DatumVydaja, "d.M.yyyy", CultureInfo.InvariantCulture);
+                    string diagnoza = p.Diagnoza.Split(' ')[0].Replace(".", "");
+
+                    foreach (var pomocka in p.Pomocky)
+                    {
+                        string mnozstvo = pomocka.Mnozstvo.ToString("D2") + ".000";
+                        string hradiPoistovna = pomocka.HradiPoistovna.ToString("000000.00", CultureInfo.InvariantCulture);
+                        string hradiPacient = pomocka.HradiPacient.ToString("000000.00", CultureInfo.InvariantCulture);
+                        csv.Append(string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}||||{11}", i.ToString("D5"), p.RodneCislo.Replace("/", ""), predpisanie.ToString("yyyyMMdd"), vydanie.ToString("yyyyMMdd"), p.Lekar.Kpzs, p.Lekar.Kod, pomocka.Pomocka.Kod, diagnoza, mnozstvo, hradiPoistovna, hradiPacient, Environment.NewLine));
+                    }
+
+                    i++;
+                }
+
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\data\\exporty\\" + _fc.Faktury[_fIndex].Obdobie);
+                File.WriteAllText(Directory.GetCurrentDirectory() + "\\data\\exporty\\" + _fc.Faktury[_fIndex].Obdobie + "\\davka.001", csv.ToString());
+
+                MessageBox.Show("Dávka bola úspešne uložená.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Pri ukladaní dávky došlo k chybe.");
             }
         }
     }
